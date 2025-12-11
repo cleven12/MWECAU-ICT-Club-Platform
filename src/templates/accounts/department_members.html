@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block title %}Manage Members - ICT Club{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4">
+    <div class="row mb-4">
+        <div class="col-lg-8">
+            <h2>Department Members</h2>
+        </div>
+        <div class="col-lg-4 text-end">
+            <div class="btn-group" role="group">
+                <input type="radio" class="btn-check" name="filter" id="all" value="all" checked>
+                <label class="btn btn-outline-primary" for="all">All ({{ members.count }})</label>
+                
+                <input type="radio" class="btn-check" name="filter" id="pending" value="pending">
+                <label class="btn btn-outline-warning" for="pending">Pending ({{ pending_members.count }})</label>
+            </div>
+        </div>
+    </div>
+    
+    {% if members %}
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead class="table-light">
+                    <tr>
+                        <th>Name</th>
+                        <th>Reg Number</th>
+                        <th>Email</th>
+                        <th>Status</th>
+                        <th>Registered</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for member in members %}
+                        <tr>
+                            <td>{{ member.full_name }}</td>
+                            <td><code>{{ member.reg_number }}</code></td>
+                            <td>{{ member.email }}</td>
+                            <td>
+                                {% if member.is_approved %}
+                                    <span class="badge bg-success">Approved</span>
+                                {% else %}
+                                    <span class="badge bg-warning">Pending</span>
+                                {% endif %}
+                            </td>
+                            <td><small>{{ member.registered_at|date:"M d, Y" }}</small></td>
+                            <td>
+                                {% if not member.is_approved %}
+                                    <form method="post" action="{% url 'accounts:approve_member' member.pk %}" style="display: inline;">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-sm btn-success">Approve</button>
+                                    </form>
+                                    <form method="post" action="{% url 'accounts:reject_member' member.pk %}" style="display: inline;">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Reject</button>
+                                    </form>
+                                {% else %}
+                                    <span class="text-muted small">Approved</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <div class="alert alert-info">No members in your department yet.</div>
+    {% endif %}
+</div>
+{% endblock %}

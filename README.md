@@ -6,7 +6,7 @@ A comprehensive Django-based platform serving as both a public portfolio and mem
 
 ---
 
-## 📋 Table of Contents
+## Table of Contents
 
 1. [Features](#features)
 2. [Technology Stack](#technology-stack)
@@ -16,47 +16,45 @@ A comprehensive Django-based platform serving as both a public portfolio and mem
 6. [Running Locally](#running-locally)
 7. [Database](#database)
 8. [Deployment](#deployment)
-9. [API Documentation](#api-documentation)
-10. [Contributing](#contributing)
+9. [Contributing](#contributing)
 
 ---
 
-## ✨ Features
+## Features
 
 ### Public Website
-- 📖 About ICT Club (mission, vision, history)
-- 🏢 Six departments overview
-- 📂 Projects portfolio (GitHub integration)
-- 📅 Events & announcements
-- 📧 Contact form with email notifications
-- 🔗 Social media links
+- About ICT Club (mission, vision, history)
+- Six departments overview
+- Projects portfolio (GitHub integration)
+- Events & announcements
+- Contact form with email notifications
+- Social media links
 
 ### Member Portal
-- 👤 User registration with unique registration number validation
-- ✅ Approval workflow (Admin + Department Leader)
-- 🖼️ Profile picture upload (Cloudinary integration)
-- ⏰ 72-hour picture upload enforcement
-- 💳 Membership payment tracking
-- 📊 Personal dashboard
-- 👥 Department information
+- User registration with unique registration number validation
+- Approval workflow (Admin + Department Leader)
+- Profile picture upload (Cloudinary integration)
+- 72-hour picture upload enforcement
+- Personal dashboard
+- Department information
+- Email notifications for all actions
 
 ### Leadership Dashboard
-- 👥 Member management
-- ✔️ Approval/rejection of registrations
-- 📊 Department statistics
-- 💰 Payment tracking
-- 📧 Bulk email notifications
+- Member management
+- Approval/rejection of registrations
+- Department statistics
+- Bulk email notifications to members
 
 ### Admin Dashboard
-- 🔐 Full system administration
-- 📋 Member database management
-- 🏢 Department & leader management
-- 💳 Payment & webhook management
-- 📝 Content management
+- Full system administration
+- Member database management
+- Department & leader management
+- Content management (announcements, events, projects)
+- Email management
 
 ---
 
-## 🛠 Technology Stack
+## Technology Stack
 
 | Component | Technology |
 |-----------|-----------|
@@ -65,15 +63,14 @@ A comprehensive Django-based platform serving as both a public portfolio and mem
 | **Database** | SQLite (Dev) / PostgreSQL (Production) |
 | **Image Storage** | Cloudinary |
 | **Email Service** | Gmail SMTP |
-| **Payment Gateway** | M-Pesa / Stripe (Optional) |
-| **Frontend** | HTML5 + TailwindCSS + JavaScript |
-| **API** | Django REST Framework |
-| **Cache/Queue** | Redis + Celery (Optional) |
-| **Deployment** | Docker / Nginx / AWS / Heroku |
+| **Frontend** | HTML5 + Bootstrap 5 + JavaScript |
+| **Async Tasks** | Redis + Celery (Optional) |
+| **Deployment** | Docker + Docker Compose / Traditional VPS |
+| **Version Control** | Git / GitHub |
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 mwecau_ict/
@@ -133,7 +130,7 @@ mwecau_ict/
 
 ---
 
-## 🚀 Installation
+## Installation
 
 ### Prerequisites
 
@@ -192,7 +189,7 @@ python manage.py init_ict_data
 
 ---
 
-## ⚙️ Configuration
+## Configuration
 
 ### Required Environment Variables
 
@@ -233,7 +230,7 @@ CLOUDINARY_API_SECRET=your-api-secret
 
 ---
 
-## 🏃 Running Locally
+## Running Locally
 
 ### Start Django Development Server
 
@@ -258,7 +255,7 @@ Username/Password: Use the superuser credentials you created
 
 ---
 
-## 🗄️ Database
+## Database
 
 ### Development (SQLite)
 
@@ -300,7 +297,7 @@ python manage.py migrate
 
 ---
 
-## 🌐 Deployment
+## Deployment
 
 ### Option 1: Heroku Deployment
 
@@ -367,77 +364,25 @@ gunicorn src.config.wsgi:application --bind 0.0.0.0:8000
 
 ---
 
-## 📊 API Documentation
+## API Status
 
-### User Registration
+This project is a server-side rendered Django application and does not provide a REST API. All functionality is accessed through the web interface using traditional form submissions and page redirects.
 
-**POST** `/api/auth/register/`
-
-```json
-{
-  "reg_number": "MWE/CS/2022/001",
-  "full_name": "John Doe",
-  "email": "john@mwecau.ac.tz",
-  "course": 1,
-  "department": 1,
-  "password1": "secure_password",
-  "password2": "secure_password"
-}
-```
-
-### User Login
-
-**POST** `/api/auth/login/`
-
-```json
-{
-  "username": "john.doe",
-  "password": "secure_password"
-}
-```
-
-### Get Members (Department Leader)
-
-**GET** `/api/members/`
-
-Query Parameters:
-- `department`: Filter by department ID
-- `is_approved`: Filter by approval status (true/false)
-- `page`: Pagination
+Future versions may include a REST API if needed. Currently, the project prioritizes:
+- User-friendly web interface
+- Server-side template rendering
+- Form-based interactions
+- Email notifications for all actions
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
-### Branch Convention
-
-- `main` - Production branch
-- `develop` - Development branch
-- `feature/feature-name` - Feature branches
-- `bugfix/bug-name` - Bug fix branches
-
-### Commit Messages
-
-```
-feat: Add new registration form
-fix: Resolve picture upload issue
-docs: Update README
-refactor: Simplify email notification logic
-test: Add unit tests for models
-```
-
-### Pull Request Process
-
-1. Create feature branch: `git checkout -b feature/my-feature`
-2. Commit changes: `git commit -m 'feat: Add feature'`
-3. Push to remote: `git push origin feature/my-feature`
-4. Create Pull Request on GitHub
-5. Request review from team members
-6. Merge after approval
+Please see [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines on how to contribute to this project.
 
 ---
 
-## 📧 Email Templates
+## Email Templates
 
 Email templates should be created in `src/templates/emails/`:
 
@@ -450,23 +395,24 @@ Email templates should be created in `src/templates/emails/`:
 
 ---
 
-## 🔐 Security Measures
+## Security Measures
 
-✅ Unique registration number validation  
-✅ Email verification during registration  
-✅ Role-based access control (RBAC)  
-✅ Password hashing (Django's PBKDF2)  
-✅ CSRF protection  
-✅ XSS protection  
-✅ SQL injection prevention (Django ORM)  
-✅ Rate limiting on sensitive endpoints  
-✅ Secure image URLs (Cloudinary)  
-✅ Payment webhook signature verification  
-✅ HTTPS enforcement in production  
+This project implements multiple security measures:
+
+- Unique registration number validation
+- Email verification during registration
+- Role-based access control (RBAC)
+- Password hashing (Django's PBKDF2)
+- CSRF protection
+- XSS protection
+- SQL injection prevention (Django ORM)
+- Rate limiting on sensitive endpoints
+- Secure image URLs (Cloudinary)
+- HTTPS enforcement in production  
 
 ---
 
-## 📱 Mobile Responsiveness
+## Mobile Responsiveness
 
 - Designed with TailwindCSS for mobile-first approach
 - Responsive breakpoints: sm (640px), md (768px), lg (1024px), xl (1280px)
@@ -475,7 +421,7 @@ Email templates should be created in `src/templates/emails/`:
 
 ---
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Email Not Sending
 
@@ -509,7 +455,7 @@ python manage.py collectstatic --noinput
 
 ---
 
-## 📞 Support & Contact
+## Support & Contact
 
 **Email:** mwecauictclub@gmail.com  
 **GitHub:** https://github.com/mwecauictclub  
@@ -517,25 +463,25 @@ python manage.py collectstatic --noinput
 
 ---
 
-## 📄 License
+## License
 
 This project is proprietary to Mwenge Catholic University ICT Club.  
 All rights reserved © 2025
 
 ---
 
-## ✨ Future Enhancements
+## Future Enhancements
 
-- 📚 Event management system
-- 🎓 Online certificate generation (PDF)
-- 📖 Resource library (tutorials, notes)
-- 💬 Internal messaging system
-- 🤖 AI chatbot for club information
-- 🏆 Competition submission portal
-- 🛍️ Club merchandise store
-- 📱 Mobile app (React Native)
-- 🎥 Live streaming for events
-- 📊 Advanced analytics dashboard
+- Event management system
+- Online certificate generation (PDF)
+- Resource library (tutorials, notes)
+- Internal messaging system
+- AI chatbot for club information
+- Competition submission portal
+- Club merchandise store
+- Mobile app (React Native)
+- Live streaming for events
+- Advanced analytics dashboard
 
 ---
 

@@ -82,6 +82,26 @@ class CustomUserCreationForm(UserCreationForm):
             raise ValidationError("Please select a course or specify your course in the 'Other' field.")
         
         return cleaned_data
+    
+    def save(self, commit=True):
+        """Override save to auto-generate unique username from email"""
+        user = super().save(commit=False)
+        
+        # Generate username from email (remove domain part)
+        email_username = self.cleaned_data.get('email').split('@')[0]
+        base_username = email_username
+        counter = 1
+        
+        # Ensure username is unique
+        while CustomUser.objects.filter(username=email_username).exists():
+            email_username = f"{base_username}{counter}"
+            counter += 1
+        
+        user.username = email_username
+        
+        if commit:
+            user.save()
+        return user
 
 
 class CustomUserChangeForm(UserChangeForm):

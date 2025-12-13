@@ -99,6 +99,10 @@ class CustomUserCreationForm(UserCreationForm):
         
         user.username = email_username
         
+        # Ensure department is set from cleaned data
+        if not user.department and 'department' in self.cleaned_data:
+            user.department = self.cleaned_data['department']
+        
         if commit:
             user.save()
         return user

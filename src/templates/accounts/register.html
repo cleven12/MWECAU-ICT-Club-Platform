@@ -114,6 +114,23 @@
                             {% endif %}
                         </div>
                         
+                        <div class="mb-4">
+                            <div class="form-check">
+                                {{ form.accept_terms }}
+                                <label class="form-check-label" for="{{ form.accept_terms.id_for_label }}">
+                                    {{ form.accept_terms.label }}
+                                    <a href="{% url 'core:terms_conditions' %}" target="_blank" class="ms-1">
+                                        <i class="fas fa-external-link-alt"></i>View Terms
+                                    </a>
+                                </label>
+                            </div>
+                            {% if form.accept_terms.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.accept_terms.errors.0 }}
+                                </div>
+                            {% endif %}
+                        </div>
+                        
                         <button type="submit" class="btn btn-primary w-100 mb-3">
                             <i class="fas fa-user-plus me-2"></i>Create Account
                         </button>

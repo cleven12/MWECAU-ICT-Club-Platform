@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Create strength indicator HTML
     const strengthContainer = document.createElement('div');
-    strengthContainer.className = 'password-strength-container mt-2';
+    strengthContainer.className = 'password-strength- ';
     strengthContainer.innerHTML = `
         <div class="password-strength-bar">
             <div class="password-strength-fill" id="strengthFill"></div>
@@ -28,8 +28,8 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="password-strength-text" id="strengthText">
             <small>Password strength: <span id="strengthLabel">Weak</span></small>
         </div>
-        <div class="password-requirements mt-2">
-            <small class="d-block">Password must contain:</small>
+        <div class="password-requirements ">
+            <small class="">Password must contain:</small>
             <ul class="list-unstyled small ms-3">
                 <li id="req-length"><i class="req-icon">✗</i> At least 8 characters</li>
                 <li id="req-uppercase"><i class="req-icon">✗</i> Uppercase letter (A-Z)</li>
@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             if (Object.values(results).filter(Boolean).length < 5) {
                 e.preventDefault();
-                alert('Password does not meet all strength requirements. Please review the requirements below.');
+                ('Password does not meet all strength requirements. Please review the requirements below.');
                 passwordInput.focus();
             }
         });

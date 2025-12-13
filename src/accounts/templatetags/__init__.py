@@ -92,13 +92,13 @@ def user_status_badge(user):
     role = get_user_role(user)
     
     if not user.is_active:
-        return '<span class="badge bg-danger">Inactive</span>'
+        return '<span class="badge ">Inactive</span>'
     elif not user.is_approved:
-        return '<span class="badge bg-warning">Pending</span>'
+        return '<span class="badge ">Pending</span>'
     elif user.is_picture_overdue():
-        return '<span class="badge bg-danger">Picture Overdue</span>'
+        return '<span class="badge ">Picture Overdue</span>'
     else:
-        return '<span class="badge bg-success">Active</span>'
+        return '<span class="badge ">Active</span>'
 
 
 @register.simple_tag
@@ -108,12 +108,12 @@ def role_badge(user):
     role = user_role_display(user)
     
     if user.is_superuser:
-        return f'<span class="badge bg-danger">{role}</span>'
+        return f'<span class="badge ">{role}</span>'
     elif user.is_staff:
-        return f'<span class="badge bg-dark">{role}</span>'
+        return f'<span class="badge ">{role}</span>'
     elif user.is_katibu:
-        return f'<span class="badge bg-primary">{role}</span>'
+        return f'<span class="badge ">{role}</span>'
     elif user.is_department_leader:
-        return f'<span class="badge bg-info">{role}</span>'
+        return f'<span class="badge ">{role}</span>'
     else:
-        return f'<span class="badge bg-secondary">{role}</span>'
+        return f'<span class="badge ">{role}</span>'

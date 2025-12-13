@@ -76,7 +76,7 @@ docker-compose down -v
 # Rebuild after code changes
 docker-compose build --no-cache
 
-# Access web container shell
+# Access web  shell
 docker-compose exec web bash
 
 # View postgres logs

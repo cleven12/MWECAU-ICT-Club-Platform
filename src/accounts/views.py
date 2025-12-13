@@ -5,15 +5,17 @@ from django.contrib.auth.views import PasswordChangeView as DjangoPasswordChange
 from django.contrib import messages
 from django.views.decorators.http import require_http_methods
 from django.utils import timezone
-from django.core.mail import send_mail
-from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DetailView, View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator
+import logging
 from .forms import CustomUserCreationForm, CustomUserChangeForm, PictureUploadForm
 from .models import CustomUser, Department
 from .decorators import picture_required, approval_required, leadership_required, department_leader_required
+from .email_service import EmailService
+
+logger = logging.getLogger(__name__)
 
 
 class RegisterView(CreateView):
@@ -45,41 +47,46 @@ class RegisterView(CreateView):
             'department': user.department,
         }
         
-        # Email to user
-        user_email_html = render_to_string('emails/registration_confirmation.html', context)
-        send_mail(
-            subject='Welcome to ICT Club - Account Pending Approval',
-            message='Your account has been created and is pending approval.',
-            from_email='mwecauictclub@gmail.com',
-            recipient_list=[user.email],
-            html_message=user_email_html,
-            fail_silently=True,
-        )
-        
-        # Email to admin (superusers)
-        admin_emails = CustomUser.objects.filter(is_staff=True).values_list('email', flat=True)
-        if admin_emails:
-            admin_email_html = render_to_string('emails/new_registration_admin.html', context)
-            send_mail(
-                subject=f'New Registration: {user.full_name}',
-                message=f'New member registration from {user.full_name}',
-                from_email='mwecauictclub@gmail.com',
-                recipient_list=list(admin_emails),
-                html_message=admin_email_html,
-                fail_silently=True,
-            )
-        
-        # Email to department leader
-        if user.department.leader:
-            leader_email_html = render_to_string('emails/new_registration_leader.html', context)
-            send_mail(
-                subject=f'New {user.department.name} Member Registration',
-                message=f'New member registration for {user.department.name}',
-                from_email='mwecauictclub@gmail.com',
-                recipient_list=[user.department.leader.email],
-                html_message=leader_email_html,
-                fail_silently=True,
-            )
+        try:
+            # Email to user
+            user_success, user_error = EmailService.send_registration_email(user, user.department)
+            if user_success:
+                logger.info(f"Registration confirmation sent to {user.email}")
+            else:
+                logger.warning(f"Failed to send registration email to {user.email}: {user_error}")
+            
+            # Email to admin (superusers)
+            admin_emails = list(CustomUser.objects.filter(is_staff=True).values_list('email', flat=True))
+            if admin_emails:
+                admin_results = EmailService.send_admin_notification(
+                    admin_emails=admin_emails,
+                    subject=f'New Registration: {user.full_name}',
+                    html_template='emails/new_registration_admin.html',
+                    context=context,
+                    plain_message=f'New member registration from {user.full_name}'
+                )
+                logger.info(f"Admin notifications sent - Successful: {admin_results['successful']}, Failed: {admin_results['failed']}")
+            
+            # Email to department leader
+            if user.department and user.department.leader:
+                try:
+                    leader_success, leader_error = EmailService.send_single_email(
+                        subject=f'New {user.department.name} Member Registration',
+                        recipient_email=user.department.leader.email,
+                        html_template='emails/new_registration_leader.html',
+                        context=context,
+                        plain_message=f'New member registration for {user.department.name}',
+                        fail_silently=True
+                    )
+                    if leader_success:
+                        logger.info(f"Department leader notification sent to {user.department.leader.email}")
+                    else:
+                        logger.warning(f"Failed to send leader notification: {leader_error}")
+                except Exception as e:
+                    logger.error(f"Exception sending leader notification: {str(e)}", exc_info=True)
+                    
+        except Exception as e:
+            logger.error(f"Exception in registration email sending: {str(e)}", exc_info=True)
 
 
 class LoginView(View):
@@ -305,42 +312,23 @@ def reject_member(request, pk):
         messages.error(request, 'You do not have permission to reject this member.')
         return redirect('accounts:department_members')
     
-    member.is_active = False
-    member.save()
-    
-    # Send rejection email
-    _send_rejection_email(member)
-    messages.success(request, f'{member.full_name} has been rejected.')
+    try:
+        member.is_active = False
+        member.save()
+        
+        # Send rejection email with error handling
+        success, error = EmailService.send_rejection_email(member)
+        if success:
+            logger.info(f"Rejection email sent to {member.email} for user {member.full_name}")
+        else:
+            logger.warning(f"Failed to send rejection email to {member.email}: {error}")
+        
+        messages.success(request, f'{member.full_name} has been rejected.')
+    except Exception as e:
+        logger.error(f"Exception in reject_member: {str(e)}", exc_info=True)
+        messages.error(request, 'An error occurred while rejecting the member.')
     
     return redirect('accounts:department_members')
-
-
-def _send_approval_email(user):
-    """Send approval confirmation email"""
-    context = {'user': user}
-    email_html = render_to_string('emails/member_approved.html', context)
-    send_mail(
-        subject='Your ICT Club Account Has Been Approved!',
-        message='Your account has been approved.',
-        from_email='mwecauictclub@gmail.com',
-        recipient_list=[user.email],
-        html_message=email_html,
-        fail_silently=True,
-    )
-
-
-def _send_rejection_email(user):
-    """Send rejection email"""
-    context = {'user': user}
-    email_html = render_to_string('emails/member_rejected.html', context)
-    send_mail(
-        subject='ICT Club Registration - Status Update',
-        message='Your registration has been reviewed.',
-        from_email='mwecauictclub@gmail.com',
-        recipient_list=[user.email],
-        html_message=email_html,
-        fail_silently=True,
-    )
 
 
 class UserPasswordChangeView(LoginRequiredMixin, DjangoPasswordChangeView):

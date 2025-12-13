@@ -1,12 +1,14 @@
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, ListView, DetailView, CreateView
-from django.core.mail import send_mail
-from django.template.loader import render_to_string
 from django.contrib import messages
 from django.urls import reverse_lazy
 from django.db.models import Q
+import logging
 from .models import Project, Event, Announcement, ContactMessage
 from accounts.models import Department
+from accounts.email_service import EmailService
+
+logger = logging.getLogger(__name__)
 
 
 class HomeView(TemplateView):
@@ -135,20 +137,15 @@ class ContactFormView(CreateView):
     def form_valid(self, form):
         response = super().form_valid(form)
         
-        # Send email notification
-        context = {'message': form.instance}
-        email_html = render_to_string('emails/contact_message.html', context)
         try:
-            send_mail(
-                subject=f'New Contact Message: {form.instance.subject}',
-                message='A new contact message has been received.',
-                from_email='mwecauictclub@gmail.com',
-                recipient_list=['mwecauictclub@gmail.com'],
-                html_message=email_html,
-                fail_silently=True,
-            )
-        except Exception:
-            pass
+            # Send email notification using EmailService
+            success, error = EmailService.send_contact_message_notification(form.instance)
+            if success:
+                logger.info(f"Contact form notification sent for message from {form.instance.email}")
+            else:
+                logger.warning(f"Failed to send contact notification: {error}")
+        except Exception as e:
+            logger.error(f"Exception sending contact notification: {str(e)}", exc_info=True)
         
         messages.success(self.request, 'Thank you! We have received your message and will respond shortly.')
         return response

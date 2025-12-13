@@ -3,42 +3,42 @@
 {% block title %}Contact Us - ICT Club{% endblock %}
 
 {% block content %}
-<div class="container py-5">
-    <div class="text-center mb-5">
-        <h1 class="mb-2">Get In Touch</h1>
-        <p class="text-muted lead">Have questions or feedback? We'd love to hear from you!</p>
+<div class=" ">
+    <div class=" ">
+        <h1 class="">Get In Touch</h1>
+        <p class=" lead">Have questions or feedback? We'd love to hear from you!</p>
     </div>
     
-    <div class="row g-4">
+    <div class=" g-4">
         <!-- Contact Form -->
-        <div class="col-lg-7">
-            <div class="card shadow-sm border-0">
-                <div class="card-body p-4">
-                    <h5 class="card-title mb-4">Send us a Message</h5>
+        <div class="">
+            <div class=" shadow-sm border-0">
+                <div class="-body ">
+                    <h5 class="-title ">Send us a Message</h5>
                     
                     <form method="post" class="needs-validation">
                         {% csrf_token %}
                         
                         {% for field in form %}
-                            <div class="mb-3">
-                                <label for="{{ field.id_for_label }}" class="form-label fw-500">{{ field.label }}</label>
+                            <div class="">
+                                <label for="{{ field.id_for_label }}" class=" fw-500">{{ field.label }}</label>
                                 {% if field.field.widget.input_type == 'textarea' %}
                                     {{ field }}
                                 {% else %}
                                     {{ field }}
                                 {% endif %}
                                 {% if field.errors %}
-                                    <div class="invalid-feedback d-block">
+                                    <div class="invalid-feedback ">
                                         <i class="fas fa-exclamation-circle me-1"></i>{{ field.errors.0 }}
                                     </div>
                                 {% endif %}
                                 {% if field.help_text %}
-                                    <small class="form-text text-muted d-block mt-1">{{ field.help_text|safe }}</small>
+                                    <small class="   ">{{ field.help_text|safe }}</small>
                                 {% endif %}
                             </div>
                         {% endfor %}
                         
-                        <button type="submit" class="btn btn-primary btn-lg w-100 mt-2">
+                        <button type="submit" class="   w-100 ">
                             <i class="fas fa-paper-plane me-2"></i>Send Message
                         </button>
                     </form>
@@ -47,53 +47,53 @@
         </div>
         
         <!-- Contact Information -->
-        <div class="col-lg-5">
-            <!-- Email Card -->
-            <div class="card shadow-sm border-0 mb-3">
-                <div class="card-body">
-                    <div class="d-flex align-items-start">
+        <div class="">
+            <!-- Email  -->
+            <div class=" shadow-sm border-0 ">
+                <div class="-body">
+                    <div class=" align-items-start">
                         <div class="flex-shrink-0">
-                            <div class="d-flex align-items-center justify-content-center" style="width: 50px; height: 50px; background-color: #e7f3ff; border-radius: 8px;">
-                                <i class="fas fa-envelope text-primary" style="font-size: 1.5rem;"></i>
+                            <div class=" align-items-center justify-content-center" style="width: 50px; height: 50px; background-color: #e7f3ff; border-radius: 8px;">
+                                <i class="fas fa-envelope " style="font-size: 1.5rem;"></i>
                             </div>
                         </div>
                         <div class="flex-grow-1 ms-3">
-                            <h6 class="mb-1">Email</h6>
-                            <p class="mb-0"><a href="mailto:mwecauictclub@gmail.com" class="text-decoration-none">mwecauictclub@gmail.com</a></p>
+                            <h6 class="">Email</h6>
+                            <p class=""><a href="mailto:mwecauictclub@gmail.com" class="">mwecauictclub@gmail.com</a></p>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <!-- Phone Card -->
-            <div class="card shadow-sm border-0 mb-3">
-                <div class="card-body">
-                    <div class="d-flex align-items-start">
+            <!-- Phone  -->
+            <div class=" shadow-sm border-0 ">
+                <div class="-body">
+                    <div class=" align-items-start">
                         <div class="flex-shrink-0">
-                            <div class="d-flex align-items-center justify-content-center" style="width: 50px; height: 50px; background-color: #e7f3ff; border-radius: 8px;">
-                                <i class="fas fa-phone text-primary" style="font-size: 1.5rem;"></i>
+                            <div class=" align-items-center justify-content-center" style="width: 50px; height: 50px; background-color: #e7f3ff; border-radius: 8px;">
+                                <i class="fas fa-phone " style="font-size: 1.5rem;"></i>
                             </div>
                         </div>
                         <div class="flex-grow-1 ms-3">
-                            <h6 class="mb-1">Phone</h6>
-                            <p class="mb-0"><a href="tel:+255615251038" class="text-decoration-none">+255 615 251 038</a></p>
+                            <h6 class="">Phone</h6>
+                            <p class=""><a href="tel:+255615251038" class="">+255 615 251 038</a></p>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <!-- Location Card -->
-            <div class="card shadow-sm border-0">
-                <div class="card-body">
-                    <div class="d-flex align-items-start">
+            <!-- Location  -->
+            <div class=" shadow-sm border-0">
+                <div class="-body">
+                    <div class=" align-items-start">
                         <div class="flex-shrink-0">
-                            <div class="d-flex align-items-center justify-content-center" style="width: 50px; height: 50px; background-color: #e7f3ff; border-radius: 8px;">
-                                <i class="fas fa-map-marker-alt text-primary" style="font-size: 1.5rem;"></i>
+                            <div class=" align-items-center justify-content-center" style="width: 50px; height: 50px; background-color: #e7f3ff; border-radius: 8px;">
+                                <i class="fas fa-map-marker-alt " style="font-size: 1.5rem;"></i>
                             </div>
                         </div>
                         <div class="flex-grow-1 ms-3">
-                            <h6 class="mb-1">Location</h6>
-                            <p class="mb-0">Mwenge Catholic University<br>Moshi, Tanzania</p>
+                            <h6 class="">Location</h6>
+                            <p class="">Mwenge Catholic University<br>Moshi, Tanzania</p>
                         </div>
                     </div>
                 </div>
@@ -125,7 +125,7 @@
         min-height: 120px;
     }
     
-    .btn-primary {
+    . {
         font-weight: 500;
     }
 </style>

@@ -6,15 +6,15 @@
 const MWECAU = {
     // Show notification
     notify: function(message, type = 'info', duration = 5000) {
-        const alertClass = `alert-${type}`;
+        const alertClass = `-${type}`;
         const alertHtml = `
-            <div class="alert ${alertClass} alert-dismissible fade show" role="alert">
+            <div class=" ${alertClass}  fade show" role="">
                 ${message}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                <button type="button" class="" data-bs-dismiss="" aria-label="Close"></button>
             </div>
         `;
         
-        const alertContainer = document.querySelector('[data-alert-container]') || 
+        const alertContainer = document.querySelector('[data-]') || 
                              document.body;
         const tempDiv = document.createElement('div');
         tempDiv.innerHTML = alertHtml;
@@ -22,9 +22,9 @@ const MWECAU = {
         
         if (duration > 0) {
             setTimeout(() => {
-                const alert = document.querySelector('.alert');
-                if (alert) {
-                    alert.remove();
+                const  = document.querySelector('.');
+                if () {
+                    .remove();
                 }
             }, duration);
         }

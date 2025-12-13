@@ -3,40 +3,40 @@
 {% block title %}{{ project.title }} - ICT Club{% endblock %}
 
 {% block content %}
-<div class="container py-5">
-    <div class="row">
-        <div class="col-lg-8">
+<div class=" ">
+    <div class="">
+        <div class="">
             {% if project.image %}
-                <img src="{{ project.image.url }}" alt="{{ project.title }}" class="img-fluid rounded mb-4">
+                <img src="{{ project.image.url }}" alt="{{ project.title }}" class="img-fluid rounded ">
             {% endif %}
             
             <h2>{{ project.title }}</h2>
-            <p class="text-muted mb-4">
+            <p class=" ">
                 {% if project.department %}
                     Department: <strong>{{ project.department.name }}</strong>
                 {% endif %}
             </p>
             
-            <div class="card mb-4">
-                <div class="card-body">
+            <div class=" ">
+                <div class="-body">
                     {{ project.description }}
                 </div>
             </div>
             
-            <div class="mb-4">
+            <div class="">
                 {% if project.github_url %}
-                    <a href="{{ project.github_url }}" target="_blank" class="btn btn-dark me-2">
+                    <a href="{{ project.github_url }}" target="_blank" class="  me-2">
                         <i class="fab fa-github me-1"></i>View on GitHub
                     </a>
                 {% endif %}
                 {% if project.live_url %}
-                    <a href="{{ project.live_url }}" target="_blank" class="btn btn-primary">
+                    <a href="{{ project.live_url }}" target="_blank" class=" ">
                         <i class="fas fa-globe me-1"></i>Live Demo
                     </a>
                 {% endif %}
             </div>
             
-            <p class="small text-muted">
+            <p class="small ">
                 Created: {{ project.created_at|date:"M d, Y" }}
                 {% if project.created_by %}
                     by {{ project.created_by.full_name }}
@@ -44,15 +44,15 @@
             </p>
         </div>
         
-        <div class="col-lg-4">
-            <div class="card">
-                <div class="card-header bg-primary text-white">
-                    <h6 class="mb-0">Project Information</h6>
+        <div class="">
+            <div class="">
+                <div class="-header  ">
+                    <h6 class="">Project Information</h6>
                 </div>
                 <div class="list-group list-group-flush">
                     {% if project.featured %}
                         <a href="#" class="list-group-item">
-                            <span class="badge bg-warning">Featured Project</span>
+                            <span class="badge ">Featured Project</span>
                         </a>
                     {% endif %}
                     {% if project.department %}
@@ -65,8 +65,8 @@
         </div>
     </div>
     
-    <div class="mt-5">
-        <a href="{% url 'core:project_list' %}" class="btn btn-secondary">Back to Projects</a>
+    <div class="">
+        <a href="{% url 'core:project_list' %}" class=" ">Back to Projects</a>
     </div>
 </div>
 {% endblock %}

@@ -6,7 +6,7 @@ A comprehensive Django-based platform serving as both a public portfolio and mem
 
 ---
 
-## Table of Contents
+##  of Contents
 
 1. [Features](#features)
 2. [Technology Stack](#technology-stack)
@@ -371,7 +371,7 @@ This project is a server-side rendered Django application and does not provide a
 Future versions may include a REST API if needed. Currently, the project prioritizes:
 - User-friendly web interface
 - Server-side template rendering
-- Form-based interactions
+-  interactions
 - Email notifications for all actions
 
 ---
@@ -390,8 +390,8 @@ Email templates should be created in `src/templates/emails/`:
 - `member_approved.html` - Approval notification
 - `member_rejected.html` - Rejection notification
 - `picture_reminder.html` - Picture upload reminder
-- `new_registration_admin.html` - New registration alert for admins
-- `new_registration_leader.html` - New registration alert for department leaders
+- `new_registration_admin.html` - New registration  for admins
+- `new_registration_leader.html` - New registration  for department leaders
 
 ---
 

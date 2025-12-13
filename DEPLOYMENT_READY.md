@@ -56,7 +56,7 @@ All uncommitted changes have been reviewed and committed:
 
 ### Networking
 - Docker bridge network: `ictclub_network`
-- Service-to-service communication via container names
+- Service-to-service communication via  names
 - All ports properly mapped
 
 ### Email System

@@ -105,12 +105,12 @@ const PasswordStrengthIndicator = {
             // Create strength meter if it doesn't exist
             if (!input.nextElementSibling || !input.nextElementSibling.classList.contains('password-strength-meter')) {
                 const meter = document.createElement('div');
-                meter.className = 'password-strength-meter mt-2';
+                meter.className = 'password-strength-meter ';
                 meter.innerHTML = `
                     <div class="progress" style="height: 5px;">
                         <div class="progress-bar" id="strength-bar-${input.id || 'password'}" style="width: 0%;"></div>
                     </div>
-                    <small class="password-strength-text d-block mt-1"></small>
+                    <small class="password-strength-text  "></small>
                 `;
                 input.parentNode.insertBefore(meter, input.nextSibling);
             }
@@ -143,7 +143,7 @@ const PasswordStrengthIndicator = {
                 <strong>Strength:</strong> ${strength.level}
                 ${strength.feedback.length > 0 ? '<br>' + strength.feedback.join(', ') : ''}
             `;
-            strengthText.className = `password-strength-text d-block mt-1 text-${strength.color}`;
+            strengthText.className = `password-strength-text   text-${strength.color}`;
         }
     }
 };
@@ -164,7 +164,7 @@ const FormErrorDisplay = {
 
         // Create and insert error message
         const errorDiv = document.createElement('div');
-        errorDiv.className = 'invalid-feedback d-block';
+        errorDiv.className = 'invalid-feedback ';
         errorDiv.textContent = message;
         field.parentNode.insertBefore(errorDiv, field.nextSibling);
     },

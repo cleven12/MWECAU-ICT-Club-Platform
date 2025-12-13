@@ -94,7 +94,7 @@ class CustomUserAdmin(BaseUserAdmin):
                 '<div style="background-color: #f8f9fa; padding: 12px; border-radius: 4px; border-left: 4px solid #ffc107;">'
                 '<p style="margin: 0 0 8px 0; font-weight: 500;">No password set.</p>'
                 '<p style="margin: 0 0 12px 0; color: #666; font-size: 13px;">Raw passwords are not stored, so there is no way to see this user\'s password, but you can change the password using the button below.</p>'
-                '<a href="{}" class="button" style="background-color: #ffc107; color: black; padding: 5px 15px; text-decoration: none; border-radius: 3px; display: inline-block;">Change Password</a>'
+                '<a href="{}" class="button" style="background-color: #ffc107; color: black; padding: 5px 15px; : none; border-radius: 3px; display: inline-block;">Change Password</a>'
                 '</div>',
                 change_url
             )

@@ -29,7 +29,7 @@ class CustomUserCreationForm(UserCreationForm):
     )
     accept_terms = forms.BooleanField(
         required=True,
-        widget=forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+        widget=forms.CheckboxInput(attrs={'class': ''}),
         label='I agree to the Terms and Conditions',
         error_messages={'required': 'You must accept the Terms and Conditions to register.'}
     )
@@ -39,16 +39,16 @@ class CustomUserCreationForm(UserCreationForm):
         fields = ('reg_number', 'full_name', 'email', 'course', 'department', 'password1', 'password2')
         widgets = {
             'reg_number': forms.TextInput(attrs={
-                'class': 'form-control',
+                'class': '',
                 'placeholder': 'T/DEG/2025/001',
                 'pattern': r'^T/(DEG|CERT|DIP|MASTER|PHD)/\d{4}/\d{3,4}$'
             }),
             'full_name': forms.TextInput(attrs={
-                'class': 'form-control',
+                'class': '',
                 'placeholder': 'John Doe Smith'
             }),
             'email': forms.EmailInput(attrs={
-                'class': 'form-control',
+                'class': '',
                 'placeholder': 'your.email@mwecau.ac.tz'
             }),
         }
@@ -56,19 +56,19 @@ class CustomUserCreationForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['password1'].widget.attrs.update({
-            'class': 'form-control',
+            'class': '',
             'placeholder': 'Strong password required',
             'id': 'password-input'
         })
         self.fields['password2'].widget.attrs.update({
-            'class': 'form-control',
+            'class': '',
             'placeholder': 'Confirm password'
         })
         self.fields['course'].widget.attrs.update({
-            'class': 'form-select'
+            'class': ''
         })
         self.fields['department'].widget.attrs.update({
-            'class': 'form-select'
+            'class': ''
         })
     
     def clean_email(self):
@@ -150,23 +150,23 @@ class CustomUserChangeForm(UserChangeForm):
         exclude = ('password',)  # Explicitly exclude password field
         widgets = {
             'full_name': forms.TextInput(attrs={
-                'class': 'form-control'
+                'class': ''
             }),
             'email': forms.EmailInput(attrs={
-                'class': 'form-control'
+                'class': ''
             }),
             'course': forms.Select(attrs={
-                'class': 'form-select'
+                'class': ''
             }),
             'course_other': forms.TextInput(attrs={
-                'class': 'form-control',
+                'class': '',
                 'placeholder': 'Specify your course if not listed'
             }),
             'department': forms.Select(attrs={
-                'class': 'form-select'
+                'class': ''
             }),
             'picture': forms.FileInput(attrs={
-                'class': 'form-control',
+                'class': '',
                 'accept': 'image/*'
             }),
         }
@@ -179,7 +179,7 @@ class PictureUploadForm(forms.ModelForm):
         fields = ('picture',)
         widgets = {
             'picture': forms.FileInput(attrs={
-                'class': 'form-control',
+                'class': '',
                 'accept': 'image/*'
             })
         }

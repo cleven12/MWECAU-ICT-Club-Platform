@@ -3,25 +3,25 @@
 {% block title %}Manage Members - ICT Club{% endblock %}
 
 {% block content %}
-<div class="container-fluid py-4">
-    <div class="row mb-4">
-        <div class="col-lg-8">
+<div class="-fluid ">
+    <div class=" ">
+        <div class="">
             <h2>Department Members</h2>
-            <p class="text-muted">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }} ({{ page_obj.paginator.count }} total members)</p>
+            <p class="">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }} ({{ page_obj.paginator.count }} total members)</p>
         </div>
-        <div class="col-lg-4">
+        <div class="">
             <!-- Filter Buttons -->
-            <div class="btn-group flex-wrap" role="group">
-                <a href="?filter=all&page=1" class="btn btn-sm {% if filter_type == 'all' %}btn-primary{% else %}btn-outline-primary{% endif %}">
+            <div class=" flex-wrap" role="group">
+                <a href="?filter=all&page=1" class="  {% if filter_type == 'all' %}{% else %}-primary{% endif %}">
                     All ({{ page_obj.paginator.count }})
                 </a>
-                <a href="?filter=approved&page=1" class="btn btn-sm {% if filter_type == 'approved' %}btn-success{% else %}btn-outline-success{% endif %}">
+                <a href="?filter=approved&page=1" class="  {% if filter_type == 'approved' %}{% else %}-success{% endif %}">
                     Approved ({{ approved_count }})
                 </a>
-                <a href="?filter=pending&page=1" class="btn btn-sm {% if filter_type == 'pending' %}btn-warning{% else %}btn-outline-warning{% endif %}">
+                <a href="?filter=pending&page=1" class="  {% if filter_type == 'pending' %}{% else %}-warning{% endif %}">
                     Pending ({{ pending_count }})
                 </a>
-                <a href="?filter=rejected&page=1" class="btn btn-sm {% if filter_type == 'rejected' %}btn-danger{% else %}btn-outline-danger{% endif %}">
+                <a href="?filter=rejected&page=1" class="  {% if filter_type == 'rejected' %}{% else %}-danger{% endif %}">
                     Rejected ({{ rejected_count }})
                 </a>
             </div>
@@ -29,9 +29,9 @@
     </div>
     
     {% if members %}
-        <div class="table-responsive">
-            <table class="table table-hover">
-                <thead class="table-light">
+        <div class="">
+            < class=" ">
+                <thead class="">
                     <tr>
                         <th>Name</th>
                         <th>Reg Number</th>
@@ -49,11 +49,11 @@
                             <td>{{ member.email }}</td>
                             <td>
                                 {% if not member.is_active %}
-                                    <span class="badge bg-danger">Rejected</span>
+                                    <span class="badge ">Rejected</span>
                                 {% elif member.is_approved %}
-                                    <span class="badge bg-success">Approved</span>
+                                    <span class="badge ">Approved</span>
                                 {% else %}
-                                    <span class="badge bg-warning">Pending</span>
+                                    <span class="badge ">Pending</span>
                                 {% endif %}
                             </td>
                             <td><small>{{ member.registered_at|date:"M d, Y" }}</small></td>
@@ -61,27 +61,27 @@
                                 {% if member.is_active and not member.is_approved %}
                                     <form method="post" action="{% url 'accounts:approve_member' member.pk %}" style="display: inline;">
                                         {% csrf_token %}
-                                        <button type="submit" class="btn btn-sm btn-success">Approve</button>
+                                        <button type="submit" class="  ">Approve</button>
                                     </form>
                                     <form method="post" action="{% url 'accounts:reject_member' member.pk %}" style="display: inline;">
                                         {% csrf_token %}
-                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Reject</button>
+                                        <button type="submit" class="  " onclick="return confirm('Are you sure?')">Reject</button>
                                     </form>
                                 {% elif member.is_active and member.is_approved %}
-                                    <span class="text-muted small">✓ Approved</span>
+                                    <span class=" small">✓ Approved</span>
                                 {% else %}
-                                    <span class="text-danger small">✗ Rejected</span>
+                                    <span class=" small">✗ Rejected</span>
                                 {% endif %}
                             </td>
                         </tr>
                     {% endfor %}
                 </tbody>
-            </table>
+            </>
         </div>
         
         <!-- Pagination -->
         {% if page_obj.has_other_pages %}
-            <nav aria-label="Page navigation" class="mt-4">
+            <nav aria-label="Page navigation" class="">
                 <ul class="pagination justify-content-center">
                     {% if page_obj.has_previous %}
                         <li class="page-item">
@@ -122,7 +122,7 @@
             </nav>
         {% endif %}
     {% else %}
-        <div class="alert alert-info">No members found with the selected filter.</div>
+        <div class=" ">No members found with the selected filter.</div>
     {% endif %}
 </div>
 {% endblock %}

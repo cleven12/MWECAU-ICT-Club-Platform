@@ -10,6 +10,7 @@ from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DetailView, View
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.paginator import Paginator
 from .forms import CustomUserCreationForm, CustomUserChangeForm, PictureUploadForm
 from .models import CustomUser, Department
 from .decorators import picture_required, approval_required, leadership_required, department_leader_required
@@ -238,9 +239,15 @@ def department_members(request):
     else:
         members = CustomUser.objects.all().order_by('-registered_at')
     
+    # Add pagination - 50 members per page
+    paginator = Paginator(members, 50)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    
     context = {
-        'members': members,
-        'pending_members': members.filter(is_approved=False),
+        'page_obj': page_obj,
+        'members': page_obj.object_list,
+        'pending_members': page_obj.object_list.filter(is_approved=False),
     }
     return render(request, 'accounts/department_members.html', context)
 

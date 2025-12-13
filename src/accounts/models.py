@@ -73,6 +73,8 @@ class CustomUser(AbstractUser):
             )
         ]
     )
+    # Note: first_name and last_name are inherited from AbstractUser
+    surname = models.CharField(max_length=100, blank=True, verbose_name='Surname')
     full_name = models.CharField(max_length=200)
     course = models.ForeignKey(
         Course,

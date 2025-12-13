@@ -7,6 +7,7 @@ urlpatterns = [
     # Public pages
     path('', views.HomeView.as_view(), name='home'),
     path('about/', views.AboutView.as_view(), name='about'),
+    path('faq/', views.FAQView.as_view(), name='faq'),
     path('departments/', views.DepartmentListView.as_view(), name='department_list'),
     path('departments/<slug:slug>/', views.DepartmentDetailView.as_view(), name='department_detail'),
     path('projects/', views.ProjectListView.as_view(), name='project_list'),

@@ -112,50 +112,65 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
+                    <!-- Essential Public Pages -->
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'core:home' %}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'core:department_list' %}">Departments</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'core:project_list' %}">Projects</a>
+                        <a class="nav-link" href="{% url 'core:about' %}">About</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'core:event_list' %}">Events</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'core:leadership' %}">Leadership</a>
+                        <a class="nav-link" href="{% url 'core:faq' %}">FAQs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'core:leadership' %}">Team</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'core:contact' %}">Contact</a>
                     </li>
                     
                     {% if user.is_authenticated %}
+                        <!-- Additional Pages for Authenticated Users -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'core:department_list' %}">Departments</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'core:project_list' %}">Projects</a>
+                        </li>
+                        
+                        <!-- User Dropdown -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
                                 <i class="fas fa-user-circle me-1"></i>{{ user.full_name }}
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="{% url 'accounts:member_dashboard' %}">Dashboard</a></li>
-                                <li><a class="dropdown-item" href="{% url 'accounts:profile_detail' %}">My Profile</a></li>
+                                <li><a class="dropdown-item" href="{% url 'accounts:member_dashboard' %}"><i class="fas fa-tachometer-alt me-2"></i>Dashboard</a></li>
+                                <li><a class="dropdown-item" href="{% url 'accounts:profile_detail' %}"><i class="fas fa-user me-2"></i>My Profile</a></li>
                                 {% if user.is_department_leader or user.is_staff %}
                                     <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="{% url 'accounts:department_members' %}">Members</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'accounts:department_members' %}"><i class="fas fa-users me-2"></i>Members</a></li>
                                 {% endif %}
                                 {% if user.is_staff %}
-                                    <li><a class="dropdown-item" href="/admin/">Admin Panel</a></li>
+                                    <li><a class="dropdown-item" href="/admin/"><i class="fas fa-cog me-2"></i>Admin Panel</a></li>
                                 {% endif %}
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="{% url 'accounts:logout' %}">Logout</a></li>
+                                <li><a class="dropdown-item" href="{% url 'accounts:logout' %}"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
                             </ul>
                         </li>
                     {% else %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'accounts:login' %}">Login</a>
+                        <!-- Public User CTA Buttons -->
+                        <li class="nav-item ms-2">
+                            <a class="nav-link btn btn-outline-light text-white" href="{% url 'accounts:login' %}">
+                                <i class="fas fa-sign-in-alt me-1"></i>Login
+                            </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link btn btn-success text-white ms-2" href="{% url 'accounts:register' %}">Join Club</a>
+                        <li class="nav-item ms-2">
+                            <a class="nav-link btn btn-success text-white" href="{% url 'accounts:register' %}">
+                                <i class="fas fa-user-plus me-1"></i>Join Club
+                            </a>
                         </li>
                     {% endif %}
                 </ul>
@@ -182,43 +197,75 @@
     <footer class="footer mt-5">
         <div class="container">
             <div class="row">
-                <div class="col-md-4 mb-4">
-                    <h5>About ICT Club</h5>
-                    <p class="small">The ICT Club at Mwenge Catholic University is dedicated to empowering students with cutting-edge technology skills and fostering innovation.</p>
+                <!-- Column 1: About -->
+                <div class="col-md-3 mb-4">
+                    <h5><i class="fas fa-info-circle me-2"></i>About ICT Club</h5>
+                    <p class="small">The ICT Club at Mwenge Catholic University empowers students with cutting-edge technology skills and fosters innovation through collaboration.</p>
                 </div>
-                <div class="col-md-4 mb-4">
-                    <h5>Quick Links</h5>
+
+                <!-- Column 2: Essential Public Links -->
+                <div class="col-md-3 mb-4">
+                    <h5><i class="fas fa-globe me-2"></i>For Public</h5>
                     <ul class="list-unstyled small">
-                        <li><a href="{% url 'core:home' %}" class="text-white text-decoration-none">Home</a></li>
-                        <li><a href="{% url 'core:department_list' %}" class="text-white text-decoration-none">Departments</a></li>
-                        <li><a href="{% url 'core:leadership' %}" class="text-white text-decoration-none">Leadership</a></li>
-                        <li><a href="{% url 'core:contact' %}" class="text-white text-decoration-none">Contact</a></li>
-                        <li><a href="{% url 'core:privacy_policy' %}" class="text-white text-decoration-none">Privacy Policy</a></li>
-                        <li><a href="{% url 'core:terms_conditions' %}" class="text-white text-decoration-none">Terms & Conditions</a></li>
+                        <li><a href="{% url 'core:home' %}" class="text-white text-decoration-none"><i class="fas fa-home me-2"></i>Home</a></li>
+                        <li><a href="{% url 'core:about' %}" class="text-white text-decoration-none"><i class="fas fa-book me-2"></i>About Us</a></li>
+                        <li><a href="{% url 'core:event_list' %}" class="text-white text-decoration-none"><i class="fas fa-calendar me-2"></i>Events</a></li>
+                        <li><a href="{% url 'core:faq' %}" class="text-white text-decoration-none"><i class="fas fa-question-circle me-2"></i>FAQs</a></li>
+                        <li><a href="{% url 'core:contact' %}" class="text-white text-decoration-none"><i class="fas fa-envelope me-2"></i>Contact</a></li>
                     </ul>
                 </div>
-                <div class="col-md-4 mb-4">
-                    <h5>Contact Us</h5>
-                    <p class="small">
-                        <i class="fas fa-envelope me-2"></i>Email: <a href="mailto:mwecauictclub@gmail.com" class="text-white">mwecauictclub@gmail.com</a><br>
+
+                <!-- Column 3: Member Only Links -->
+                <div class="col-md-3 mb-4">
+                    <h5><i class="fas fa-lock me-2"></i>For Members</h5>
+                    <ul class="list-unstyled small">
+                        {% if user.is_authenticated %}
+                            <li><a href="{% url 'accounts:member_dashboard' %}" class="text-white text-decoration-none"><i class="fas fa-tachometer-alt me-2"></i>Dashboard</a></li>
+                            <li><a href="{% url 'accounts:profile_detail' %}" class="text-white text-decoration-none"><i class="fas fa-user me-2"></i>My Profile</a></li>
+                            <li><a href="{% url 'core:department_list' %}" class="text-white text-decoration-none"><i class="fas fa-sitemap me-2"></i>Departments</a></li>
+                            <li><a href="{% url 'core:project_list' %}" class="text-white text-decoration-none"><i class="fas fa-folder me-2"></i>Projects</a></li>
+                        {% else %}
+                            <li><a href="{% url 'accounts:login' %}" class="text-white text-decoration-none"><i class="fas fa-sign-in-alt me-2"></i>Login</a></li>
+                            <li><a href="{% url 'accounts:register' %}" class="text-white text-decoration-none"><i class="fas fa-user-plus me-2"></i>Join Club</a></li>
+                        {% endif %}
+                        <li><a href="{% url 'core:leadership' %}" class="text-white text-decoration-none"><i class="fas fa-crown me-2"></i>Leadership</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: Legal & Contact -->
+                <div class="col-md-3 mb-4">
+                    <h5><i class="fas fa-phone me-2"></i>Contact</h5>
+                    <p class="small mb-3">
+                        <i class="fas fa-envelope me-2"></i><a href="mailto:mwecauictclub@gmail.com" class="text-white text-decoration-none">mwecauictclub@gmail.com</a><br>
+                        <i class="fas fa-phone me-2"></i><a href="tel:+255615251038" class="text-white text-decoration-none">+255 615 251 038</a><br>
                         <i class="fas fa-map-marker-alt me-2"></i>Mwenge Catholic University, Moshi
                     </p>
-                    <div class="mt-2">
-                        <a href="https://github.com/mwecauictclub" class="text-white me-2" target="_blank">
-                            <i class="fab fa-github"></i>
+                    <div class="mt-3">
+                        <a href="https://github.com/mwecauictclub" class="text-white me-3" target="_blank" title="GitHub">
+                            <i class="fab fa-github fa-lg"></i>
                         </a>
-                        <a href="#" class="text-white me-2">
-                            <i class="fab fa-twitter"></i>
+                        <a href="https://facebook.com/mwecauictclub" class="text-white me-3" target="_blank" title="Facebook">
+                            <i class="fab fa-facebook fa-lg"></i>
                         </a>
-                        <a href="#" class="text-white">
-                            <i class="fab fa-linkedin"></i>
+                        <a href="https://twitter.com/mwecauictclub" class="text-white" target="_blank" title="Twitter">
+                            <i class="fab fa-twitter fa-lg"></i>
                         </a>
                     </div>
                 </div>
             </div>
+
             <hr class="bg-light">
-            <div class="text-center small">
-                <p>&copy; 2024 ICT Club - Mwenge Catholic University. All rights reserved. | <a href="{% url 'core:privacy_policy' %}" class="text-white">Privacy Policy</a> | <a href="{% url 'core:terms_conditions' %}" class="text-white">Terms & Conditions</a></p>
+            
+            <!-- Footer Bottom: Legal & Copyright -->
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="small mb-2">&copy; 2024 ICT Club - Mwenge Catholic University. All rights reserved.</p>
+                    <p class="small">
+                        <a href="{% url 'core:privacy_policy' %}" class="text-white text-decoration-none me-3">Privacy Policy</a>
+                        <span class="text-muted">|</span>
+                        <a href="{% url 'core:terms_conditions' %}" class="text-white text-decoration-none ms-3">Terms & Conditions</a>
+                    </p>
+                </div>
             </div>
         </div>
     </footer>

@@ -37,6 +37,11 @@ class AboutView(TemplateView):
     template_name = 'core/about.html'
 
 
+class FAQView(TemplateView):
+    """FAQ page"""
+    template_name = 'core/faq.html'
+
+
 class DepartmentListView(ListView):
     """List all departments"""
     model = Department

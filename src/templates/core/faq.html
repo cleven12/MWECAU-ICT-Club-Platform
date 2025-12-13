@@ -1,0 +1,361 @@
+{% extends 'base.html' %}
+
+{% block title %}FAQ - MWECAU ICT Club{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <!-- Page Header -->
+    <div class="row mb-5">
+        <div class="col-lg-8 offset-lg-2 text-center">
+            <h1 class="display-4 fw-bold mb-3">Frequently Asked Questions</h1>
+            <p class="lead text-muted">Find answers to common questions about MWECAU ICT Club</p>
+        </div>
+    </div>
+
+    <!-- FAQ Content -->
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <!-- Membership Questions -->
+            <section class="mb-5">
+                <h2 class="h3 mb-4"><i class="fas fa-user-plus me-2"></i>Membership</h2>
+                
+                <div class="accordion" id="membershipAccordion">
+                    <!-- Q1 -->
+                    <div class="accordion-item border-0 mb-3 rounded-3 shadow-sm">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#question1">
+                                Who can join the ICT Club?
+                            </button>
+                        </h2>
+                        <div id="question1" class="accordion-collapse collapse show" data-bs-parent="#membershipAccordion">
+                            <div class="accordion-body">
+                                <p>The ICT Club welcomes all students at Mwenge Catholic University with interest in technology. We have three membership tiers:</p>
+                                <ul>
+                                    <li><strong>Honorary:</strong> Current ICT/Computer Science students (full access)</li>
+                                    <li><strong>Associate:</strong> Other students interested in tech (event participation)</li>
+                                    <li><strong>Expert:</strong> Graduated mentors and advisors</li>
+                                </ul>
+                                <p>All are welcome – we grow through collaboration!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div class="accordion-item border-0 mb-3 rounded-3 shadow-sm">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#question2">
+                                How do I register as a member?
+                            </button>
+                        </h2>
+                        <div id="question2" class="accordion-collapse collapse" data-bs-parent="#membershipAccordion">
+                            <div class="accordion-body">
+                                <ol>
+                                    <li>Click on the <strong>"Join Club"</strong> button in the navigation menu</li>
+                                    <li>Fill in your registration form with accurate information</li>
+                                    <li>Select your preferred department/division</li>
+                                    <li>Submit the form and wait for approval from leadership</li>
+                                    <li>You'll receive a confirmation email once approved</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div class="accordion-item border-0 mb-3 rounded-3 shadow-sm">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#question3">
+                                Is membership free?
+                            </button>
+                        </h2>
+                        <div id="question3" class="accordion-collapse collapse" data-bs-parent="#membershipAccordion">
+                            <div class="accordion-body">
+                                <p>Yes! Membership in the MWECAU ICT Club is completely free. We're a student-led organization dedicated to providing free access to technology education, workshops, and project opportunities.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Q4 -->
+                    <div class="accordion-item border-0 mb-3 rounded-3 shadow-sm">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#question4">
+                                How long does membership approval take?
+                            </button>
+                        </h2>
+                        <div id="question4" class="accordion-collapse collapse" data-bs-parent="#membershipAccordion">
+                            <div class="accordion-body">
+                                <p>Membership applications are typically reviewed within 2-5 business days. You'll receive an email notification once your application is approved or if additional information is needed.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Department Questions -->
+            <section class="mb-5">
+                <h2 class="h3 mb-4"><i class="fas fa-sitemap me-2"></i>Departments & Divisions</h2>
+                
+                <div class="accordion" id="departmentAccordion">
+                    <!-- Q5 -->
+                    <div class="accordion-item border-0 mb-3 rounded-3 shadow-sm">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#question5">
+                                What are the six departments?
+                            </button>
+                        </h2>
+                        <div id="question5" class="accordion-collapse collapse show" data-bs-parent="#departmentAccordion">
+                            <div class="accordion-body">
+                                <p>The ICT Club is organized into six dynamic departments:</p>
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-code me-2 text-primary"></i><strong>Programming</strong> - Python, JavaScript, PHP development</li>
+                                    <li><i class="fas fa-shield-alt me-2 text-danger"></i><strong>Cybersecurity</strong> - Ethical hacking, digital forensics, secure computing</li>
+                                    <li><i class="fas fa-network-wired me-2 text-success"></i><strong>Networking</strong> - Network design, Cisco simulation, infrastructure</li>
+                                    <li><i class="fas fa-tools me-2 text-warning"></i><strong>Computer Maintenance</strong> - Hardware repair, software troubleshooting</li>
+                                    <li><i class="fas fa-palette me-2 text-info"></i><strong>Graphic Design</strong> - Adobe tools, UI/UX, visual design</li>
+                                    <li><i class="fas fa-brain me-2 text-secondary"></i><strong>AI & Machine Learning</strong> - ML models, automation, robotics</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Q6 -->
+                    <div class="accordion-item border-0 mb-3 rounded-3 shadow-sm">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#question6">
+                                Can I join multiple departments?
+                            </button>
+                        </h2>
+                        <div id="question6" class="accordion-collapse collapse" data-bs-parent="#departmentAccordion">
+                            <div class="accordion-body">
+                                <p>Yes! You can be active in multiple departments. During registration, select your primary interest, but you can request to join additional departments after approval by contacting the department leaders.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Q7 -->
+                    <div class="accordion-item border-0 mb-3 rounded-3 shadow-sm">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#question7">
+                                How do I find my department?
+                            </button>
+                        </h2>
+                        <div id="question7" class="accordion-collapse collapse" data-bs-parent="#departmentAccordion">
+                            <div class="accordion-body">
+                                <p>After joining, you can:</p>
+                                <ol>
+                                    <li>Visit the <strong><a href="{% url 'core:department_list' %}">Departments</a></strong> page to browse all divisions</li>
+                                    <li>View each department's details, members, and projects</li>
+                                    <li>Contact the department leader for more information</li>
+                                    <li>Attend department meetings and workshops</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects & Events Questions -->
+            <section class="mb-5">
+                <h2 class="h3 mb-4"><i class="fas fa-tasks me-2"></i>Projects & Events</h2>
+                
+                <div class="accordion" id="projectsAccordion">
+                    <!-- Q8 -->
+                    <div class="accordion-item border-0 mb-3 rounded-3 shadow-sm">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#question8">
+                                How can I participate in projects?
+                            </button>
+                        </h2>
+                        <div id="question8" class="accordion-collapse collapse show" data-bs-parent="#projectsAccordion">
+                            <div class="accordion-body">
+                                <p>To participate in club projects:</p>
+                                <ol>
+                                    <li>Join the club and get approved</li>
+                                    <li>Visit the <strong><a href="{% url 'core:project_list' %}">Projects</a></strong> page</li>
+                                    <li>Browse ongoing projects in your department</li>
+                                    <li>Express interest to the project lead</li>
+                                    <li>Collaborate with your team to build amazing solutions</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Q9 -->
+                    <div class="accordion-item border-0 mb-3 rounded-3 shadow-sm">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#question9">
+                                What types of projects does the club work on?
+                            </button>
+                        </h2>
+                        <div id="question9" class="accordion-collapse collapse" data-bs-parent="#projectsAccordion">
+                            <div class="accordion-body">
+                                <p>The club works on diverse projects including:</p>
+                                <ul>
+                                    <li><strong>Student Information Systems</strong> - Web and desktop applications</li>
+                                    <li><strong>Websites & Admin Dashboards</strong> - Full-stack web development</li>
+                                    <li><strong>Security Tools</strong> - Penetration testing and security utilities</li>
+                                    <li><strong>Network Simulations</strong> - Cisco and networking practice</li>
+                                    <li><strong>Robot Control Systems</strong> - VEX and Arduino projects</li>
+                                    <li><strong>UI/UX Prototypes</strong> - Design and user experience projects</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Q10 -->
+                    <div class="accordion-item border-0 mb-3 rounded-3 shadow-sm">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#question10">
+                                How often does the club hold events?
+                            </button>
+                        </h2>
+                        <div id="question10" class="accordion-collapse collapse" data-bs-parent="#projectsAccordion">
+                            <div class="accordion-body">
+                                <p>The club regularly hosts:</p>
+                                <ul>
+                                    <li><strong>Weekly Meetings</strong> - General club updates and discussions</li>
+                                    <li><strong>Workshops</strong> - Skills training in various technologies</li>
+                                    <li><strong>Seminars</strong> - Guest speakers and industry professionals</li>
+                                    <li><strong>Hackathons</strong> - Team-based development competitions</li>
+                                    <li><strong>Social Events</strong> - Networking and team building</li>
+                                </ul>
+                                <p>Check the <strong><a href="{% url 'core:event_list' %}">Events</a></strong> page for upcoming activities.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Leadership & Roles Questions -->
+            <section class="mb-5">
+                <h2 class="h3 mb-4"><i class="fas fa-crown me-2"></i>Leadership & Roles</h2>
+                
+                <div class="accordion" id="leadershipAccordion">
+                    <!-- Q11 -->
+                    <div class="accordion-item border-0 mb-3 rounded-3 shadow-sm">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#question11">
+                                How can I become a leader?
+                            </button>
+                        </h2>
+                        <div id="question11" class="accordion-collapse collapse show" data-bs-parent="#leadershipAccordion">
+                            <div class="accordion-body">
+                                <p>To join the leadership team:</p>
+                                <ol>
+                                    <li>Be an active member for at least one semester</li>
+                                    <li>Demonstrate commitment and leadership qualities</li>
+                                    <li>Express interest in a specific leadership role</li>
+                                    <li>Go through the selection process with current leadership</li>
+                                    <li>Get elected or appointed to your position</li>
+                                </ol>
+                                <p>Learn more about leadership roles on our <strong><a href="{% url 'core:leadership' %}">Leadership</a></strong> page.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Q12 -->
+                    <div class="accordion-item border-0 mb-3 rounded-3 shadow-sm">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#question12">
+                                What are the main leadership positions?
+                            </button>
+                        </h2>
+                        <div id="question12" class="accordion-collapse collapse" data-bs-parent="#leadershipAccordion">
+                            <div class="accordion-body">
+                                <p>The club structure includes:</p>
+                                <ul class="list-unstyled">
+                                    <li class="mb-2"><strong><i class="fas fa-crown me-2 text-warning"></i>Chairperson & Vice Chairperson</strong> - Overall leadership</li>
+                                    <li class="mb-2"><strong><i class="fas fa-file-alt me-2 text-info"></i>Secretary & Assistant Secretary</strong> - Records and communication</li>
+                                    <li class="mb-2"><strong><i class="fas fa-project-diagram me-2 text-success"></i>Product Manager & Assistant PM</strong> - Projects and initiatives</li>
+                                    <li><strong><i class="fas fa-users me-2 text-danger"></i>Division Leaders</strong> - Lead their respective departments</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- General Questions -->
+            <section class="mb-5">
+                <h2 class="h3 mb-4"><i class="fas fa-question-circle me-2"></i>General Questions</h2>
+                
+                <div class="accordion" id="generalAccordion">
+                    <!-- Q13 -->
+                    <div class="accordion-item border-0 mb-3 rounded-3 shadow-sm">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#question13">
+                                Where is the club located?
+                            </button>
+                        </h2>
+                        <div id="question13" class="accordion-collapse collapse show" data-bs-parent="#generalAccordion">
+                            <div class="accordion-body">
+                                <p><strong>MWECAU ICT Club</strong></p>
+                                <p>
+                                    Mwenge Catholic University<br>
+                                    P.O. Box 1226<br>
+                                    Moshi, Kilimanjaro<br>
+                                    Tanzania
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Q14 -->
+                    <div class="accordion-item border-0 mb-3 rounded-3 shadow-sm">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#question14">
+                                How can I contact the club?
+                            </button>
+                        </h2>
+                        <div id="question14" class="accordion-collapse collapse" data-bs-parent="#generalAccordion">
+                            <div class="accordion-body">
+                                <p><strong>Email:</strong> <a href="mailto:mwecauictclub@gmail.com">mwecauictclub@gmail.com</a></p>
+                                <p><strong>Phone:</strong> <a href="tel:+255615251038">+255 615 251 038</a></p>
+                                <p><strong>Use the <a href="{% url 'core:contact' %}">Contact Form</a></strong> for inquiries and messages.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Q15 -->
+                    <div class="accordion-item border-0 mb-3 rounded-3 shadow-sm">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#question15">
+                                Does the club have a GitHub repository?
+                            </button>
+                        </h2>
+                        <div id="question15" class="accordion-collapse collapse" data-bs-parent="#generalAccordion">
+                            <div class="accordion-body">
+                                <p>Yes! All our projects are open-source and available on GitHub.</p>
+                                <p><strong><a href="https://github.com/mwecauictclub" target="_blank"><i class="fab fa-github me-2"></i>Visit our GitHub Organization</a></strong></p>
+                                <p>You can find our latest projects, contribute to our repositories, and learn from our code!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Q16 -->
+                    <div class="accordion-item border-0 mb-3 rounded-3 shadow-sm">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#question16">
+                                Can non-students attend club events?
+                            </button>
+                        </h2>
+                        <div id="question16" class="accordion-collapse collapse" data-bs-parent="#generalAccordion">
+                            <div class="accordion-body">
+                                <p>Some events are open to the public, but most club activities are primarily for MWECAU students. For inquiries about attending specific events, please <strong><a href="{% url 'core:contact' %}">contact us</a></strong>.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA Section -->
+            <div class="bg-light rounded-3 p-5 text-center mt-5">
+                <h3 class="mb-3">Didn't find your answer?</h3>
+                <p class="text-muted mb-4">Have more questions? Feel free to reach out to us directly!</p>
+                <a href="{% url 'core:contact' %}" class="btn btn-primary btn-lg">
+                    <i class="fas fa-envelope me-2"></i>Contact Us
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

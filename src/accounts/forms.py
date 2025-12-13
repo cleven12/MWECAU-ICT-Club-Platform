@@ -98,12 +98,29 @@ class CustomUserCreationForm(UserCreationForm):
         return cleaned_data
     
     def save(self, commit=True):
-        """Override save to use registration number as username"""
+        """Override save to split full_name and use registration number as username"""
         user = super().save(commit=False)
         
         # Use registration number as username
         reg_number = self.cleaned_data.get('reg_number')
         user.username = reg_number.upper()
+        
+        # Split full_name into first_name, last_name, and surname
+        full_name = self.cleaned_data.get('full_name').strip()
+        parts = full_name.split()
+        
+        if len(parts) >= 3:
+            user.first_name = parts[0]
+            user.last_name = parts[1]
+            user.surname = parts[2]
+        elif len(parts) == 2:
+            user.first_name = parts[0]
+            user.last_name = parts[1]
+            user.surname = ''
+        else:
+            user.first_name = parts[0]
+            user.last_name = ''
+            user.surname = ''
         
         # Ensure department is set from cleaned data
         if not user.department and 'department' in self.cleaned_data:

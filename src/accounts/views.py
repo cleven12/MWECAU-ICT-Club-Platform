@@ -24,6 +24,7 @@ class RegisterView(CreateView):
     def form_valid(self, form):
         user = form.save(commit=False)
         user.is_active = True
+        # The form's save() method already set the username
         user.save()
         
         # Send notification emails

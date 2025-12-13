@@ -3,6 +3,7 @@ FROM python:3.10-slim
 # Set environment variables
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONDONTWRITEBYTECODE=1
+ENV PIP_NO_CACHE_DIR=1
 
 # Set work directory
 WORKDIR /app
@@ -21,13 +22,18 @@ RUN pip install --upgrade pip && \
 COPY src/ .
 
 # Create necessary directories
-RUN mkdir -p /app/staticfiles /app/media
+RUN mkdir -p /app/staticfiles /app/media /app/logs
 
-# Collect static files
-RUN python manage.py collectstatic --noinput
+# Collect static files (will use defaults if not configured)
+RUN python manage.py collectstatic --noinput --clear || true
 
 # Expose port
 EXPOSE 8000
 
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
+    CMD python -c "import requests; requests.get('http://localhost:8000', timeout=5)"
+
 # Run gunicorn
-CMD ["gunicorn", "config.wsgi:application", "--bind", "0.0.0.0:8000"]
+CMD ["gunicorn", "config.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "4", "--access-logfile", "-", "--error-logfile", "-"]
+

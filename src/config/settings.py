@@ -90,12 +90,34 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+# Support both SQLite (development) and PostgreSQL (production/docker)
+DB_ENGINE = config('DB_ENGINE', default='django.db.backends.sqlite3')
+DATABASE_URL = config('DATABASE_URL', default=None)
+
+if DATABASE_URL or DB_ENGINE == 'django.db.backends.postgresql':
+    # PostgreSQL configuration (Docker or production)
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': config('DB_NAME', default='ictclub'),
+            'USER': config('DB_USER', default='postgres'),
+            'PASSWORD': config('DB_PASSWORD', default='postgres'),
+            'HOST': config('DB_HOST', default='localhost'),
+            'PORT': config('DB_PORT', default='5432', cast=int),
+            'CONN_MAX_AGE': 600,
+            'OPTIONS': {
+                'connect_timeout': 10,
+            }
+        }
     }
-}
+else:
+    # SQLite configuration (development)
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 
 # Password validation

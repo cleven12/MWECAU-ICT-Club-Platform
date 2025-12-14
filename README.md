@@ -1,513 +1,284 @@
-# MWECAU ICT Club Website
+# Contributors
 
-A comprehensive Django-based platform serving as both a public portfolio and member management system for the Mwenge Catholic University ICT Club.
-
-**Live Repository:** https://github.com/mwecauictclub
+Thank you to everyone who has contributed to the MWECAU ICT Club Portal! This project is made possible by the dedication and hard work of our amazing community.
 
 ---
 
-##  of Contents
+## How to Add Yourself
 
-1. [Features](#features)
-2. [Technology Stack](#technology-stack)
-3. [Project Structure](#project-structure)
-4. [Installation](#installation)
-5. [Configuration](#configuration)
-6. [Running Locally](#running-locally)
-7. [Database](#database)
-8. [Deployment](#deployment)
-9. [Contributing](#contributing)
+1. Fork this repository
+2. Add your information under the appropriate section below
+3. Create a pull request with the title: "Add [Your Name] to Contributors"
+4. Wait for approval from the team
 
 ---
 
-## Features
+## Core Development Team
 
-### Public Website
-- About ICT Club (mission, vision, history)
-- Six departments overview
-- Projects portfolio (GitHub integration)
-- Events & announcements
-- Contact form with email notifications
-- Social media links
+The backbone of our technical implementation.
 
-### Member Portal
-- User registration with unique registration number validation
-- Approval workflow (Admin + Department Leader)
-- Profile picture upload (Cloudinary integration)
-- 72-hour picture upload enforcement
-- Personal dashboard
-- Department information
-- Email notifications for all actions
-
-### Leadership Dashboard
-- Member management
-- Approval/rejection of registrations
-- Department statistics
-- Bulk email notifications to members
-
-### Admin Dashboard
-- Full system administration
-- Member database management
-- Department & leader management
-- Content management (announcements, events, projects)
-- Email management
+| Name | Role | Contributions | GitHub | Contact |
+|------|------|---------------|--------|---------|
+| **Your Name** | Lead Developer | Project architecture, backend development, deployment | [@username](https://github.com/username) | email@example.com |
+| | | | | |
 
 ---
 
-## Technology Stack
+## Design & UI/UX Team
 
-| Component | Technology |
-|-----------|-----------|
-| **Backend Framework** | Django 4.2.x |
-| **Web Server** | Gunicorn (Production) / Django Dev Server |
-| **Database** | SQLite (Dev) / PostgreSQL (Production) |
-| **Image Storage** | Cloudinary |
-| **Email Service** | Gmail SMTP |
-| **Frontend** | HTML5 + Bootstrap 5 + JavaScript |
-| **Async Tasks** | Redis + Celery (Optional) |
-| **Deployment** | Docker + Docker Compose / Traditional VPS |
-| **Version Control** | Git / GitHub |
+Creating beautiful and user-friendly interfaces.
+
+| Name | Role | Contributions | Portfolio | Contact |
+|------|------|---------------|-----------|---------|
+| | | | | |
 
 ---
 
-## Project Structure
+## Documentation Team
 
-```
-mwecau_ict/
-├── src/                          # Django project root
-│   ├── config/                   # Project settings
-│   │   ├── settings.py           # Main settings
-│   │   ├── urls.py               # URL routing
-│   │   ├── wsgi.py               # WSGI config
-│   │   └── asgi.py               # ASGI config
-│   │
-│   ├── accounts/                 # User & authentication app
-│   │   ├── models.py             # CustomUser, Department, Course
-│   │   ├── views.py              # Registration, login, profile
-│   │   ├── forms.py              # Registration & profile forms
-│   │   ├── admin.py              # Admin interface
-│   │   ├── decorators.py         # Custom decorators
-│   │   ├── middleware.py         # Picture enforcement middleware
-│   │   ├── email_utils.py        # Email utilities
-│   │   └── management/           # Management commands
-│   │       └── commands/
-│   │           └── init_ict_data.py  # Initialize data
-│   │
-│   ├── membership/               # Payment & membership app
-│   │   ├── models.py             # MembershipPayment, PaymentWebhookLog
-│   │   ├── views.py              # Payment handling
-│   │   ├── admin.py              # Admin interface
-│   │   └── webhooks.py           # Payment webhooks (M-Pesa, Stripe)
-│   │
-│   ├── core/                     # Portfolio & announcements app
-│   │   ├── models.py             # Project, Event, Announcement
-│   │   ├── views.py              # Public pages
-│   │   └── admin.py              # Admin interface
-│   │
-│   ├── templates/                # HTML templates
-│   │   ├── base.html             # Base template
-│   │   ├── accounts/             # Auth templates
-│   │   ├── core/                 # Public templates
-│   │   ├── emails/               # Email templates
-│   │   └── admin/                # Custom admin templates
-│   │
-│   ├── static/                   # Static files (CSS, JS, images)
-│   │   ├── css/
-│   │   ├── js/
-│   │   └── images/
-│   │
-│   ├── media/                    # User uploads
-│   │   └── profile_pictures/
-│   │
-│   └── manage.py                 # Django management script
-│
-├── docs/                         # Documentation
-│   ├── setup/                    # Setup & deployment guides
-│   │   ├── DOCKER_GUIDE.md
-│   │   ├── DOCKER_SETUP_SUMMARY.md
-│   │   ├── docker-compose.yml
-│   │   ├── Dockerfile
-│   │   └── requirements.txt
-│   ├── deployment/               # Deployment documentation
-│   │   └── DEPLOYMENT_READY.md
-│   ├── guides/                   # Feature guides
-│   │   ├── EMAIL_SYSTEM_GUIDE.md
-│   │   └── EMAIL_SYSTEM_COMPLETE.md
-│   ├── CHANGELOG.md
-│   ├── CODE_OF_CONDUCT.md
-│   ├── CONTRIBUTING.md
-│   ├── FEATURES_IMPLEMENTATION_AUDIT.md
-│   ├── PROJECT_STATUS.txt
-│   └── USERS.md
-│
-├── public/                       # Public assets
-│   ├── .env.example
-│   └── assets/
-│
-├── scripts/                      # Utility scripts
-│   ├── EMAIL_QUICK_REFERENCE.sh
-│   ├── tests_email.py
-│   └── .env
-│
-├── README.md                     # This file
-└── venv/                         # Virtual environment
-```
+Making the project accessible through clear documentation.
+
+| Name | Role | Contributions | GitHub | Contact |
+|------|------|---------------|--------|---------|
+| | | | | |
 
 ---
 
-## Installation
+## Testing & Quality Assurance
 
-### Prerequisites
+Ensuring reliability and catching bugs before deployment.
 
-- Python 3.10+
-- pip & virtualenv
-- Git
-- PostgreSQL (for production)
-- Redis (optional, for caching/queuing)
-
-### Step 1: Clone Repository
-
-```bash
-git clone https://github.com/mwecauictclub/mwecau_ict.git
-cd mwecau_ict
-```
-
-### Step 2: Create Virtual Environment
-
-```bash
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-```
-
-### Step 3: Install Dependencies
-
-```bash
-pip install -r docs/setup/requirements.txt
-```
-
-### Step 4: Configure Environment Variables
-
-```bash
-cp public/.env.example scripts/.env
-# Edit scripts/.env with your configuration
-nano scripts/.env
-```
-
-### Step 5: Run Migrations
-
-```bash
-cd src
-python manage.py migrate
-```
-
-### Step 6: Create Superuser
-
-```bash
-python manage.py createsuperuser
-```
-
-### Step 7: Initialize Data (Departments & Courses)
-
-```bash
-python manage.py init_ict_data
-```
+| Name | Role | Contributions | GitHub | Contact |
+|------|------|---------------|--------|---------|
+| | | | | |
 
 ---
 
-## Configuration
+## Marketing & Content Team
 
-### Required Environment Variables
+Spreading the word and creating engaging content.
 
-```env
-# Django
-DEBUG=True
-SECRET_KEY=your-secret-key-here
-
-# Email Configuration (Gmail SMTP)
-EMAIL_HOST_USER=mwecauictclub@gmail.com
-EMAIL_HOST_PASSWORD=your-app-password  # Use App Password, not regular password
-
-# Cloudinary (for production image storage)
-USE_CLOUDINARY=False  # Set to True for production
-CLOUDINARY_CLOUD_NAME=your-cloud-name
-CLOUDINARY_API_KEY=your-api-key
-CLOUDINARY_API_SECRET=your-api-secret
-```
-
-### Gmail App Password Setup
-
-1. Enable 2-Factor Authentication on your Google account
-2. Go to https://myaccount.google.com/apppasswords
-3. Generate an app-specific password for Gmail
-4. Use this password in `EMAIL_HOST_PASSWORD`
-
-### Cloudinary Setup (Production)
-
-1. Sign up at https://cloudinary.com
-2. Get your API credentials
-3. Add to `.env`:
-   ```
-   USE_CLOUDINARY=True
-   CLOUDINARY_CLOUD_NAME=...
-   CLOUDINARY_API_KEY=...
-   CLOUDINARY_API_SECRET=...
-   ```
+| Name | Role | Contributions | Social | Contact |
+|------|------|---------------|--------|---------|
+| | | | | |
 
 ---
 
-## Running Locally
+## Project Management
 
-### Start Django Development Server
+Coordinating efforts and keeping the team organized.
 
-```bash
-cd src
-python manage.py runserver
-```
-
-Access at: http://localhost:8000
-
-### Admin Interface
-
-URL: http://localhost:8000/admin  
-Username/Password: Use the superuser credentials you created
-
-### Test Registration
-
-1. Visit http://localhost:8000/register/
-2. Fill the registration form
-3. Check the admin panel for pending approvals
-4. Approve from admin: http://localhost:8000/admin/accounts/customuser/
+| Name | Role | Contributions | LinkedIn | Contact |
+|------|------|---------------|----------|---------|
+| | | | | |
 
 ---
 
-## Database
+## Community Contributors
 
-### Development (SQLite)
+Individual contributors who have made valuable contributions.
 
-SQLite is configured by default. Database file: `src/db.sqlite3`
-
-### Production (PostgreSQL)
-
-Update `config/settings.py`:
-
-```python
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'ictclub',
-        'USER': 'postgres',
-        'PASSWORD': 'your-password',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
-}
-```
-
-Or use environment variables:
-
-```bash
-DB_NAME=ictclub
-DB_USER=postgres
-DB_PASSWORD=password
-DB_HOST=localhost
-DB_PORT=5432
-```
-
-### Run Migrations
-
-```bash
-python manage.py makemigrations
-python manage.py migrate
-```
+| Name | Contribution Type | Description | Date | GitHub |
+|------|------------------|-------------|------|--------|
+| | | | | |
 
 ---
 
-## Deployment
+## Student Contributors
 
-### Option 1: Heroku Deployment
+Students from various departments contributing their skills.
 
-```bash
-# Install Heroku CLI
-brew install heroku/brew/heroku
-
-# Login to Heroku
-heroku login
-
-# Create app
-heroku create mwecau-ict
-
-# Add PostgreSQL add-on
-heroku addons:create heroku-postgresql:hobby-dev
-
-# Configure environment variables
-heroku config:set DEBUG=False
-heroku config:set SECRET_KEY=your-secret-key
-# ... set other env vars
-
-# Deploy
-git push heroku main
-
-# Run migrations
-heroku run python src/manage.py migrate
-```
-
-### Option 2: Docker Deployment
-
-For production deployment using Docker:
-- Refer to [docs/setup/DOCKER_GUIDE.md](docs/setup/DOCKER_GUIDE.md) - Comprehensive Docker setup guide
-- Refer to [docs/setup/DOCKER_SETUP_SUMMARY.md](docs/setup/DOCKER_SETUP_SUMMARY.md) - Setup checklist and verification
-- Refer to [docs/deployment/DEPLOYMENT_READY.md](docs/deployment/DEPLOYMENT_READY.md) - Deployment readiness checklist
-
-Quick start:
-```bash
-docker-compose -f docs/setup/docker-compose.yml build
-docker-compose -f docs/setup/docker-compose.yml up -d
-```
-
-### Option 3: Traditional VPS (Ubuntu)
-
-```bash
-# Install system dependencies
-sudo apt-get update
-sudo apt-get install python3 python3-pip python3-venv postgresql nginx
-
-# Clone and setup
-git clone https://github.com/mwecauictclub/mwecau_ict.git
-cd mwecau_ict
-python3 -m venv venv
-source venv/bin/activate
-pip install -r docs/setup/requirements.txt
-
-# Configure Gunicorn
-pip install gunicorn
-gunicorn src.config.wsgi:application --bind 0.0.0.0:8000
-
-# Configure Nginx (reverse proxy)
-# For detailed setup, see docs/deployment/DEPLOYMENT_READY.md
-```
+| Name | Department | Year | Contributions | GitHub |
+|------|-----------|------|---------------|--------|
+| | | | | |
 
 ---
 
-## API Status
+## Special Thanks
 
-This project is a server-side rendered Django application and does not provide a REST API. All functionality is accessed through the web interface using traditional form submissions and page redirects.
+People who have provided guidance, mentorship, or resources.
 
-Future versions may include a REST API if needed. Currently, the project prioritizes:
-- User-friendly web interface
-- Server-side template rendering
--  interactions
-- Email notifications for all actions
+| Name | Role/Organization | Contribution | Contact |
+|------|------------------|--------------|---------|
+| | | | |
 
 ---
 
-## Contributing
+## Contribution Categories
 
-Please see [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines on how to contribute to this project.
+### Code Contributions
+    - Backend Development
+    - Frontend Development
+    - Mobile Development
+    - DevOps & Deployment
+    - Testing & QA
 
----
-
-## Email Templates
-
-Email templates should be created in `src/templates/emails/`:
-
-- `registration_confirmation.html` - Confirmation for new registrations
-- `member_approved.html` - Approval notification
-- `member_rejected.html` - Rejection notification
-- `picture_reminder.html` - Picture upload reminder
-- `new_registration_admin.html` - New registration  for admins
-- `new_registration_leader.html` - New registration  for department leaders
-
----
-
-## Security Measures
-
-This project implements multiple security measures:
-
-- Unique registration number validation
-- Email verification during registration
-- Role-based access control (RBAC)
-- Password hashing (Django's PBKDF2)
-- CSRF protection
-- XSS protection
-- SQL injection prevention (Django ORM)
-- Rate limiting on sensitive endpoints
-- Secure image URLs (Cloudinary)
-- HTTPS enforcement in production  
+### Non-Code Contributions
+    - Documentation
+    - Design & UI/UX
+    - Marketing & Outreach
+    - Project Management
+    - Data Analysis
+    - Translation
+    - Feature Ideas
+    - Bug Reports
+    - Tutorial Creation
+    - Event Organization
 
 ---
 
-## Mobile Responsiveness
+## Contribution Statistics
 
-- Designed with TailwindCSS for mobile-first approach
-- Responsive breakpoints: sm (640px), md (768px), lg (1024px), xl (1280px)
-- Touch-friendly buttons and forms
-- Optimized images for different screen sizes
+| Category | Contributors | Total Contributions |
+|----------|-------------|---------------------|
+| Development | 0 | 0 |
+| Design | 0 | 0 |
+| Documentation | 0 | 0 |
+| Testing | 0 | 0 |
+| Marketing | 0 | 0 |
+| Management | 0 | 0 |
+| Community | 0 | 0 |
+| **Total** | **0** | **0** |
 
----
-
-## Troubleshooting
-
-### Email Not Sending
-
-1. Check `.env` for correct email credentials
-2. Verify Gmail App Password (not regular password)
-3. Check email logs: `python manage.py shell`
-4. Enable "Less secure app access" if using regular password
-
-### Migration Issues
-
-```bash
-# Reset migrations (development only!)
-python manage.py migrate accounts zero
-python manage.py migrate membership zero
-python manage.py migrate core zero
-python manage.py makemigrations
-python manage.py migrate
-```
-
-### Static Files Not Loading in Production
-
-```bash
-python manage.py collectstatic --noinput
-```
-
-### Cloudinary Images Not Working
-
-1. Check `USE_CLOUDINARY=True` in `.env`
-2. Verify API credentials
-3. Check image permissions in Cloudinary dashboard
+*Last Updated: December 2025*
 
 ---
 
-## Support & Contact
+## Recognition Levels
 
-**Email:** mwecauictclub@gmail.com  
-**GitHub:** https://github.com/mwecauictclub  
-**Institution:** Mwenge Catholic University, Moshi, Tanzania
+### Gold Contributors
+Made major contributions (50+ commits or equivalent non-code work)
 
----
+>>*No contributors yet - be the first!*
 
-## License
+### Silver Contributors
+Made significant contributions (20-49 commits or equivalent)
 
-This project is proprietary to Mwenge Catholic University ICT Club.  
-All rights reserved © 2025
+>>*No contributors yet - be the first!*
 
----
+### Bronze Contributors
+Made valuable contributions (5-19 commits or equivalent)
 
-## Future Enhancements
+>>*No contributors yet - be the first!*
 
-- Event management system
-- Online certificate generation (PDF)
-- Resource library (tutorials, notes)
-- Internal messaging system
-- AI chatbot for club information
-- Competition submission portal
-- Club merchandise store
-- Mobile app (React Native)
-- Live streaming for events
-- Advanced analytics dashboard
+### Rising Stars
+New contributors making their first contributions
+
+>>*No contributors yet - be the first!*
 
 ---
 
-**Last Updated:** December 2025  
-**Maintained By:** ICT Club Development Team
+## How Different Roles Can Contribute
+
+### For Programmers
+- Implement new features
+- Fix bugs and issues
+- Optimize performance
+- Write tests
+- Review pull requests
+- Improve code quality
+
+### For Designers
+- Create UI mockups
+- Design logos and branding
+- Improve user experience
+- Create graphics and icons
+- Design email templates
+- Develop style guides
+
+### For Writers
+- Write documentation
+- Create tutorials
+- Draft blog posts
+- Write user guides
+- Translate content
+- Improve README files
+
+### For Organizers
+- Plan events
+- Coordinate teams
+- Manage timelines
+- Facilitate meetings
+- Track progress
+- Communicate updates
+
+### For Everyone
+- Report bugs
+- Suggest features
+- Test the application
+- Spread awareness
+- Provide feedback
+- Support other contributors
+
+---
+
+## Contributor Guidelines
+
+1. **Be Respectful** - Treat all contributors with respect and kindness
+2. **Be Clear** - Clearly describe your contributions
+3. **Be Honest** - Accurately represent your work
+4. **Be Collaborative** - Work together and support others
+5. **Be Professional** - Maintain professional communication
+6. **Follow Code of Conduct** - Adhere to our community standards
+
+---
+
+## Monthly Top Contributors
+
+### December 2025
+
+| Rank | Name | Contributions | Category |
+|------|------|---------------|----------|
+| 🥇 | TBD | TBD | TBD |
+| 🥈 | TBD | TBD | TBD |
+| 🥉 | TBD | TBD | TBD |
+
+---
+
+##  Contributor Testimonials
+
+>>Demo Testmonials:
+
+> *"Contributing to the ICT Club portal has been an amazing learning experience. I've grown both technically and professionally."*
+> 
+> — **Contributor Name**, Role
+
+*Add your testimonial by making a contribution!*
+
+---
+
+## Questions About Contributing?
+
+- **Email:** mwecauictclub@gmail.com
+- **GitHub Issues:** [Create an issue](https://github.com/mwecauictclub/mwecau_ict/issues)
+- **Discord:** [Join our server](#) *(Coming Soon)*
+
+---
+
+<div align="center">
+
+**Every Contribution Matters!**
+
+Whether you write code, design interfaces, document features, or organize events - **you make a difference!**
+
+![Contributors](https://img.shields.io/badge/Contributors-Welcome-brightgreen?style=for-the-badge)
+
+*Join us in building the most powerful platform MWECAU has ever seen!*
+
+</div>
+
+---
+
+## Update History
+
+| Date | Update | By |
+|------|--------|-----|
+| Dec 2025 | Initial contributors file created | ICT Club Team |
+
+---
+
+<div align="center">
+
+**Made with ❤️ by the MWECAU ICT Club Community**
+
+</div>

@@ -139,6 +139,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Custom authentication backend to support email, registration number, and username
+AUTHENTICATION_BACKENDS = [
+    'accounts.backends.EmailOrRegNumberBackend',
+    'django.contrib.auth.backends.ModelBackend',  # Default backend as fallback
+]
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/

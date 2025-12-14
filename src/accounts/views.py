@@ -87,9 +87,11 @@ class LoginView(View):
     
     def post(self, request):
         """Handle login form submission"""
-        username = request.POST.get('username')
+        username_or_email_or_reg = request.POST.get('username')
         password = request.POST.get('password')
-        user = authenticate(request, username=username, password=password)
+        
+        # Authenticate using custom backend (supports email, reg number, or username)
+        user = authenticate(request, username=username_or_email_or_reg, password=password)
         
         if user is not None:
             login(request, user)
@@ -100,7 +102,7 @@ class LoginView(View):
             
             return redirect('accounts:member_dashboard')
         else:
-            messages.error(request, 'Invalid username or password.')
+            messages.error(request, 'Invalid registration number, email, or password.')
             return redirect('accounts:login')
 
 

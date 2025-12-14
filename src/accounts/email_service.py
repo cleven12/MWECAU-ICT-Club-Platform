@@ -131,8 +131,9 @@ class EmailService:
                 from_email=cls.DEFAULT_FROM_EMAIL,
                 recipient_list=[recipient_email],
                 html_message=html_message,
-                fail_silently=False,
+                fail_silently=fail_silently,  # ✅ FIXED
             )
+
             
             if sent:
                 logger.info(f"Email sent successfully to {recipient_email} - Subject: {subject}")
@@ -474,20 +475,11 @@ class EmailService:
         subject: str,
         html_template: str,
         context: Dict = None,
-        plain_message: str = None
+        plain_message: str = None,
+        fail_silently: bool = True
     ) -> Dict:
         """
         Send notification to all admin/staff members
-        
-        Args:
-            admin_emails: List of admin email addresses
-            subject: Email subject
-            html_template: HTML template path
-            context: Template context
-            plain_message: Plain text message
-            
-        Returns:
-            Dict: Bulk send results
         """
         return cls.send_bulk_emails(
             subject=subject,
@@ -495,9 +487,10 @@ class EmailService:
             html_template=html_template,
             context_data=context,
             plain_message=plain_message,
-            fail_silently=True,
+            fail_silently=fail_silently,
             batch_size=50
         )
+        
 
 
 # Backward compatibility - standalone functions

@@ -1,72 +1,77 @@
-# MWECAU ICT Club Website
+# MWECAU ICT Club Portal
 
-A comprehensive Django-based platform serving as both a public portfolio and member management system for the Mwenge Catholic University ICT Club.
+<div align="center">
 
-**Live Repository:** https://github.com/mwecauictclub
+![MWECAU ICT Club](https://img.shields.io/badge/MWECAU-ICT%20Club-blue?style=for-the-badge&logo=university&logoColor=white)
+![Status](https://img.shields.io/badge/Status-Active-success?style=for-the-badge)
+![License](https://img.shields.io/badge/License-Proprietary-red?style=for-the-badge)
 
----
+**A comprehensive Django-based platform serving as both a public portfolio and member management system for the Mwenge Catholic University ICT Club.**
 
-##  of Contents
+[Features](#features) • [Tech Stack](#tech-stack) • [Installation](#installation) • [Documentation](#documentation) • [Contributing](#contributing)
 
-1. [Features](#features)
-2. [Technology Stack](#technology-stack)
-3. [Project Structure](#project-structure)
-4. [Installation](#installation)
-5. [Configuration](#configuration)
-6. [Running Locally](#running-locally)
-7. [Database](#database)
-8. [Deployment](#deployment)
-9. [Contributing](#contributing)
+</div>
 
 ---
 
 ## Features
 
 ### Public Website
-- About ICT Club (mission, vision, history)
-- Six departments overview
-- Projects portfolio (GitHub integration)
-- Events & announcements
-- Contact form with email notifications
-- Social media links
+- **About ICT Club** - Mission, vision, and history
+- **Six Departments** - Overview of all technical departments
+- **Project Portfolio** - Showcase with GitHub integration
+- **Events & Announcements** - Stay updated with club activities
+- **Contact System** - Form with email notifications
+- **Social Integration** - Connect through social media
 
 ### Member Portal
-- User registration with unique registration number validation
-- Approval workflow (Admin + Department Leader)
-- Profile picture upload (Cloudinary integration)
-- 72-hour picture upload enforcement
-- Personal dashboard
-- Department information
-- Email notifications for all actions
+- **Smart Registration** - Unique registration number validation
+- **Approval Workflow** - Two-tier approval system (Admin + Department Leader)
+- **Profile Management** - Picture upload with Cloudinary integration
+- **72-Hour Enforcement** - Mandatory profile picture upload
+- **Personal Dashboard** - Track your membership journey
+- **Email Notifications** - Stay informed of all actions
 
 ### Leadership Dashboard
-- Member management
-- Approval/rejection of registrations
-- Department statistics
-- Bulk email notifications to members
+- **Member Management** - Oversee department members
+- **Approval System** - Review and approve/reject registrations
+- **Department Analytics** - Track statistics and growth
+- **Bulk Communications** - Email notifications to members
 
 ### Admin Dashboard
-- Full system administration
-- Member database management
-- Department & leader management
-- Content management (announcements, events, projects)
-- Email management
+- **Full System Control** - Complete platform administration
+- **Database Management** - Member and department oversight
+- **Content Management** - Announcements, events, and projects
+- **Email Administration** - Manage all communications
 
 ---
 
-## Technology Stack
+## Tech Stack
 
-| Component | Technology |
-|-----------|-----------|
-| **Backend Framework** | Django 4.2.x |
-| **Web Server** | Gunicorn (Production) / Django Dev Server |
-| **Database** | SQLite (Dev) / PostgreSQL (Production) |
-| **Image Storage** | Cloudinary |
-| **Email Service** | Gmail SMTP |
-| **Frontend** | HTML5 + Bootstrap 5 + JavaScript |
-| **Async Tasks** | Redis + Celery (Optional) |
-| **Deployment** | Docker + Docker Compose / Traditional VPS |
-| **Version Control** | Git / GitHub |
+### Backend & Framework
+![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Django](https://img.shields.io/badge/Django-4.2.x-092E20?style=for-the-badge&logo=django&logoColor=white)
+![Gunicorn](https://img.shields.io/badge/Gunicorn-Server-499848?style=for-the-badge&logo=gunicorn&logoColor=white)
+
+### Database
+![SQLite](https://img.shields.io/badge/SQLite-Development-003B57?style=for-the-badge&logo=sqlite&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-Production-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Alternative-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
+
+### Cloud & Services
+![Cloudinary](https://img.shields.io/badge/Cloudinary-Image%20Storage-3448C5?style=for-the-badge&logo=cloudinary&logoColor=white)
+![Gmail](https://img.shields.io/badge/Gmail-SMTP-EA4335?style=for-the-badge&logo=gmail&logoColor=white)
+
+### Frontend
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Bootstrap](https://img.shields.io/badge/Bootstrap_5-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+
+### Development Tools
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
+![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 
 ---
 
@@ -74,83 +79,44 @@ A comprehensive Django-based platform serving as both a public portfolio and mem
 
 ```
 mwecau_ict/
-├── src/                          # Django project root
-│   ├── config/                   # Project settings
-│   │   ├── settings.py           # Main settings
-│   │   ├── urls.py               # URL routing
-│   │   ├── wsgi.py               # WSGI config
-│   │   └── asgi.py               # ASGI config
+├── 📂 src/                        # Django project root
+│   ├── 📂 config/                 # Project configuration
+│   │   ├── settings.py            # Main settings
+│   │   ├── urls.py                # URL routing
+│   │   ├── wsgi.py                # WSGI configuration
+│   │   └── asgi.py                # ASGI configuration
 │   │
-│   ├── accounts/                 # User & authentication app
-│   │   ├── models.py             # CustomUser, Department, Course
-│   │   ├── views.py              # Registration, login, profile
-│   │   ├── forms.py              # Registration & profile forms
-│   │   ├── admin.py              # Admin interface
-│   │   ├── decorators.py         # Custom decorators
-│   │   ├── middleware.py         # Picture enforcement middleware
-│   │   ├── email_utils.py        # Email utilities
-│   │   └── management/           # Management commands
-│   │       └── commands/
-│   │           └── init_ict_data.py  # Initialize data
+│   ├── 📂 accounts/               # User & authentication
+│   │   ├── models.py              # User models
+│   │   ├── views.py               # Authentication views
+│   │   ├── forms.py               # Registration forms
+│   │   ├── admin.py               # Admin interface
+│   │   ├── decorators.py          # Custom decorators
+│   │   ├── middleware.py          # Picture enforcement
+│   │   └── email_utils.py         # Email utilities
 │   │
-│   ├── membership/               # Payment & membership app
-│   │   ├── models.py             # MembershipPayment, PaymentWebhookLog
-│   │   ├── views.py              # Payment handling
-│   │   ├── admin.py              # Admin interface
-│   │   └── webhooks.py           # Payment webhooks (M-Pesa, Stripe)
+│   ├── 📂 membership/             # Payment & membership
+│   │   ├── models.py              # Payment models
+│   │   ├── views.py               # Payment handling
+│   │   └── admin.py               # Admin interface
 │   │
-│   ├── core/                     # Portfolio & announcements app
-│   │   ├── models.py             # Project, Event, Announcement
-│   │   ├── views.py              # Public pages
-│   │   └── admin.py              # Admin interface
+│   ├── 📂 core/                   # Portfolio & announcements
+│   │   ├── models.py              # Content models
+│   │   ├── views.py               # Public pages
+│   │   └── admin.py               # Content management
 │   │
-│   ├── templates/                # HTML templates
-│   │   ├── base.html             # Base template
-│   │   ├── accounts/             # Auth templates
-│   │   ├── core/                 # Public templates
-│   │   ├── emails/               # Email templates
-│   │   └── admin/                # Custom admin templates
-│   │
-│   ├── static/                   # Static files (CSS, JS, images)
-│   │   ├── css/
-│   │   ├── js/
-│   │   └── images/
-│   │
-│   ├── media/                    # User uploads
-│   │   └── profile_pictures/
-│   │
-│   └── manage.py                 # Django management script
+│   ├── 📂 templates/              # HTML templates
+│   ├── 📂 static/                 # Static files (CSS/JS)
+│   └── 📂 media/                  # User uploads
 │
-├── docs/                         # Documentation
-│   ├── setup/                    # Setup & deployment guides
-│   │   ├── DOCKER_GUIDE.md
-│   │   ├── DOCKER_SETUP_SUMMARY.md
-│   │   ├── docker-compose.yml
-│   │   ├── Dockerfile
-│   │   └── requirements.txt
-│   ├── deployment/               # Deployment documentation
-│   │   └── DEPLOYMENT_READY.md
-│   ├── guides/                   # Feature guides
-│   │   ├── EMAIL_SYSTEM_GUIDE.md
-│   │   └── EMAIL_SYSTEM_COMPLETE.md
-│   ├── CHANGELOG.md
-│   ├── CODE_OF_CONDUCT.md
-│   ├── CONTRIBUTING.md
-│   ├── FEATURES_IMPLEMENTATION_AUDIT.md
-│   ├── PROJECT_STATUS.txt
-│   └── USERS.md
+├── 📂 docs/                       # Documentation
+│   ├── 📂 guides/                 # Feature guides
+│   ├── 📂 deployment/             # Deployment docs
+│   └── 📄 CHANGELOG.md
 │
-├── public/                       # Public assets
-│   ├── .env.example
-│   └── assets/
-│
-├── scripts/                      # Utility scripts
-│   ├── EMAIL_QUICK_REFERENCE.sh
-│   ├── tests_email.py
-│   └── .env
-│
-├── README.md                     # This file
-└── venv/                         # Virtual environment
+├── 📄 README.md                   # This file
+├── 📄 CONTRIBUTORS.md             # Contributors list
+└── 📄 CONTRIBUTING.md             # Contribution guidelines
 ```
 
 ---
@@ -159,58 +125,45 @@ mwecau_ict/
 
 ### Prerequisites
 
-- Python 3.10+
-- pip & virtualenv
-- Git
-- PostgreSQL (for production)
-- Redis (optional, for caching/queuing)
+- **Python** 3.10 or higher
+- **pip** & **virtualenv**
+- **Git**
+- **SQLite** (included with Python)
+- **MySQL** (for production)
 
-### Step 1: Clone Repository
+### Quick Start
 
 ```bash
+# 1. Clone the repository
 git clone https://github.com/mwecauictclub/mwecau_ict.git
 cd mwecau_ict
-```
 
-### Step 2: Create Virtual Environment
-
-```bash
+# 2. Create virtual environment
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
-```
 
-### Step 3: Install Dependencies
-
-```bash
+# 3. Install dependencies
 pip install -r docs/setup/requirements.txt
-```
 
-### Step 4: Configure Environment Variables
-
-```bash
+# 4. Configure environment variables
 cp public/.env.example scripts/.env
 # Edit scripts/.env with your configuration
-nano scripts/.env
-```
 
-### Step 5: Run Migrations
-
-```bash
+# 5. Run migrations
 cd src
 python manage.py migrate
-```
 
-### Step 6: Create Superuser
-
-```bash
+# 6. Create superuser
 python manage.py createsuperuser
-```
 
-### Step 7: Initialize Data (Departments & Courses)
-
-```bash
+# 7. Initialize data
 python manage.py init_ict_data
+
+# 8. Run development server
+python manage.py runserver
 ```
+
+Visit **http://localhost:8000** to view the application.
 
 ---
 
@@ -218,17 +171,19 @@ python manage.py init_ict_data
 
 ### Required Environment Variables
 
+Create a `.env` file in the `scripts/` directory:
+
 ```env
-# Django
+# Django Configuration
 DEBUG=True
 SECRET_KEY=your-secret-key-here
 
 # Email Configuration (Gmail SMTP)
 EMAIL_HOST_USER=mwecauictclub@gmail.com
-EMAIL_HOST_PASSWORD=your-app-password  # Use App Password, not regular password
+EMAIL_HOST_PASSWORD=your-app-password
 
-# Cloudinary (for production image storage)
-USE_CLOUDINARY=False  # Set to True for production
+# Cloudinary (Production Image Storage)
+USE_CLOUDINARY=False
 CLOUDINARY_CLOUD_NAME=your-cloud-name
 CLOUDINARY_API_KEY=your-api-key
 CLOUDINARY_API_SECRET=your-api-secret
@@ -237,277 +192,123 @@ CLOUDINARY_API_SECRET=your-api-secret
 ### Gmail App Password Setup
 
 1. Enable 2-Factor Authentication on your Google account
-2. Go to https://myaccount.google.com/apppasswords
+2. Visit [Google App Passwords](https://myaccount.google.com/apppasswords)
 3. Generate an app-specific password for Gmail
 4. Use this password in `EMAIL_HOST_PASSWORD`
 
-### Cloudinary Setup (Production)
-
-1. Sign up at https://cloudinary.com
-2. Get your API credentials
-3. Add to `.env`:
-   ```
-   USE_CLOUDINARY=True
-   CLOUDINARY_CLOUD_NAME=...
-   CLOUDINARY_API_KEY=...
-   CLOUDINARY_API_SECRET=...
-   ```
-
 ---
 
-## Running Locally
+## Documentation
 
-### Start Django Development Server
+Comprehensive documentation is available in the `docs/` directory:
 
-```bash
-cd src
-python manage.py runserver
-```
-
-Access at: http://localhost:8000
-
-### Admin Interface
-
-URL: http://localhost:8000/admin  
-Username/Password: Use the superuser credentials you created
-
-### Test Registration
-
-1. Visit http://localhost:8000/register/
-2. Fill the registration form
-3. Check the admin panel for pending approvals
-4. Approve from admin: http://localhost:8000/admin/accounts/customuser/
-
----
-
-## Database
-
-### Development (SQLite)
-
-SQLite is configured by default. Database file: `src/db.sqlite3`
-
-### Production (PostgreSQL)
-
-Update `config/settings.py`:
-
-```python
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'ictclub',
-        'USER': 'postgres',
-        'PASSWORD': 'your-password',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
-}
-```
-
-Or use environment variables:
-
-```bash
-DB_NAME=ictclub
-DB_USER=postgres
-DB_PASSWORD=password
-DB_HOST=localhost
-DB_PORT=5432
-```
-
-### Run Migrations
-
-```bash
-python manage.py makemigrations
-python manage.py migrate
-```
-
----
-
-## Deployment
-
-### Option 1: Heroku Deployment
-
-```bash
-# Install Heroku CLI
-brew install heroku/brew/heroku
-
-# Login to Heroku
-heroku login
-
-# Create app
-heroku create mwecau-ict
-
-# Add PostgreSQL add-on
-heroku addons:create heroku-postgresql:hobby-dev
-
-# Configure environment variables
-heroku config:set DEBUG=False
-heroku config:set SECRET_KEY=your-secret-key
-# ... set other env vars
-
-# Deploy
-git push heroku main
-
-# Run migrations
-heroku run python src/manage.py migrate
-```
-
-### Option 2: Docker Deployment
-
-For production deployment using Docker:
-- Refer to [docs/setup/DOCKER_GUIDE.md](docs/setup/DOCKER_GUIDE.md) - Comprehensive Docker setup guide
-- Refer to [docs/setup/DOCKER_SETUP_SUMMARY.md](docs/setup/DOCKER_SETUP_SUMMARY.md) - Setup checklist and verification
-- Refer to [docs/deployment/DEPLOYMENT_READY.md](docs/deployment/DEPLOYMENT_READY.md) - Deployment readiness checklist
-
-Quick start:
-```bash
-docker-compose -f docs/setup/docker-compose.yml build
-docker-compose -f docs/setup/docker-compose.yml up -d
-```
-
-### Option 3: Traditional VPS (Ubuntu)
-
-```bash
-# Install system dependencies
-sudo apt-get update
-sudo apt-get install python3 python3-pip python3-venv postgresql nginx
-
-# Clone and setup
-git clone https://github.com/mwecauictclub/mwecau_ict.git
-cd mwecau_ict
-python3 -m venv venv
-source venv/bin/activate
-pip install -r docs/setup/requirements.txt
-
-# Configure Gunicorn
-pip install gunicorn
-gunicorn src.config.wsgi:application --bind 0.0.0.0:8000
-
-# Configure Nginx (reverse proxy)
-# For detailed setup, see docs/deployment/DEPLOYMENT_READY.md
-```
-
----
-
-## API Status
-
-This project is a server-side rendered Django application and does not provide a REST API. All functionality is accessed through the web interface using traditional form submissions and page redirects.
-
-Future versions may include a REST API if needed. Currently, the project prioritizes:
-- User-friendly web interface
-- Server-side template rendering
--  interactions
-- Email notifications for all actions
+- **Setup Guides** - Installation and configuration
+- **Feature Guides** - Detailed feature documentation
+- **Email System** - Email configuration and templates
+- **Code of Conduct** - Community guidelines
+- **Contributing** - How to contribute to the project
 
 ---
 
 ## Contributing
 
-Please see [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines on how to contribute to this project.
+We welcome contributions from all members of the ICT Club! Whether you're a programmer, designer, writer, or organizer, there's a place for you.
+
+### How to Contribute
+
+1. **Fork the repository**
+2. **Create a feature branch** (`git checkout -b feature/amazing-feature`)
+3. **Commit your changes** (`git commit -m 'Add amazing feature'`)
+4. **Push to the branch** (`git push origin feature/amazing-feature`)
+5. **Open a Pull Request**
+
+### Non-Code Contributions
+
+-  Documentation improvements
+-  Design and UI/UX suggestions
+-  Bug reports and testing
+-  Feature ideas and feedback
+-  Content creation and marketing
+-  Event organization
+
+**Read our full [Contributing Guidelines](CONTRIBUTING.md) and add yourself to [CONTRIBUTORS.md](CONTRIBUTORS.md)!**
 
 ---
 
-## Email Templates
+## Security
 
-Email templates should be created in `src/templates/emails/`:
-
-- `registration_confirmation.html` - Confirmation for new registrations
-- `member_approved.html` - Approval notification
-- `member_rejected.html` - Rejection notification
-- `picture_reminder.html` - Picture upload reminder
-- `new_registration_admin.html` - New registration  for admins
-- `new_registration_leader.html` - New registration  for department leaders
-
----
-
-## Security Measures
-
-This project implements multiple security measures:
+We take security seriously. This project implements:
 
 - Unique registration number validation
 - Email verification during registration
 - Role-based access control (RBAC)
-- Password hashing (Django's PBKDF2)
+- Password hashing (Django PBKDF2)
 - CSRF protection
 - XSS protection
-- SQL injection prevention (Django ORM)
+- SQL injection prevention
 - Rate limiting on sensitive endpoints
-- Secure image URLs (Cloudinary)
-- HTTPS enforcement in production  
+- Secure image storage (Cloudinary)
+
+**Found a security vulnerability?** Please email us at **mwecauictclub@gmail.com** instead of opening a public issue.
 
 ---
 
-## Mobile Responsiveness
+## Mobile Responsive
 
-- Designed with TailwindCSS for mobile-first approach
-- Responsive breakpoints: sm (640px), md (768px), lg (1024px), xl (1280px)
-- Touch-friendly buttons and forms
-- Optimized images for different screen sizes
+- Mobile-first design approach
+- Responsive across all devices
+- Touch-friendly interface
+- Optimized performance
 
 ---
 
-## Troubleshooting
+## Roadmap
 
-### Email Not Sending
-
-1. Check `.env` for correct email credentials
-2. Verify Gmail App Password (not regular password)
-3. Check email logs: `python manage.py shell`
-4. Enable "Less secure app access" if using regular password
-
-### Migration Issues
-
-```bash
-# Reset migrations (development only!)
-python manage.py migrate accounts zero
-python manage.py migrate membership zero
-python manage.py migrate core zero
-python manage.py makemigrations
-python manage.py migrate
-```
-
-### Static Files Not Loading in Production
-
-```bash
-python manage.py collectstatic --noinput
-```
-
-### Cloudinary Images Not Working
-
-1. Check `USE_CLOUDINARY=True` in `.env`
-2. Verify API credentials
-3. Check image permissions in Cloudinary dashboard
+- [+] Event management system
+- [+] Online certificate generation (PDF)
+- [+] Resource library (tutorials, notes)
+- [+] Internal messaging system
+- [+] AI chatbot for club information
+- [+] Competition submission portal
+- [+] Mobile app (React Native)
+- [+] Advanced analytics dashboard
 
 ---
 
 ## Support & Contact
 
-**Email:** mwecauictclub@gmail.com  
-**GitHub:** https://github.com/mwecauictclub  
+<div align="center">
+
+**Email:** [mwecauictclub@gmail.com](mailto:mwecauictclub@gmail.com)
+
+**GitHub:** [github.com/mwecauictclub](https://github.com/mwecauictclub)
+
 **Institution:** Mwenge Catholic University, Moshi, Tanzania
+
+</div>
 
 ---
 
 ## License
 
-This project is proprietary to Mwenge Catholic University ICT Club.  
+This project is proprietary to **Mwenge Catholic University ICT Club**.
+
 All rights reserved © 2025
 
 ---
 
-## Future Enhancements
+## Contributors
 
-- Event management system
-- Online certificate generation (PDF)
-- Resource library (tutorials, notes)
-- Internal messaging system
-- AI chatbot for club information
-- Competition submission portal
-- Club merchandise store
-- Mobile app (React Native)
-- Live streaming for events
-- Advanced analytics dashboard
+We appreciate all contributors who have helped make this project successful! Check out our amazing [Contributors](CONTRIBUTORS.md).
 
 ---
 
-**Last Updated:** December 2025  
-**Maintained By:** ICT Club Development Team
+<div align="center">
+
+**Made with ❤️ by MWECAU ICT Club Development Team**
+
+![Footer](https://img.shields.io/badge/MWECAU-ICT%20Club-blue?style=for-the-badge)
+
+**Last Updated:** December 2025
+
+</div>

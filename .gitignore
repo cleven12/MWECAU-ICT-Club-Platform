@@ -95,3 +95,4 @@ celerybeat.pid
 # Logs
 # =========================
 *.log
+src/.env

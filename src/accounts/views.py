@@ -234,11 +234,11 @@ def department_members(request):
     # Get members based on user role
     if user.is_staff:
         # Admins see all members
-        members = CustomUser.objects.all().order_by('-registered_at')
+        members = CustomUser.objects.select_related('department', 'course').order_by('-registered_at')
     elif user.is_department_leader:
         # Department leaders see only their department members
         try:
-            members = user.led_department.members.all().order_by('-registered_at')
+            members = user.led_department.members.select_related('department', 'course').order_by('-registered_at')
         except Department.DoesNotExist:
             messages.error(request, 'You are not assigned as a leader to any department.')
             return redirect('accounts:member_dashboard')

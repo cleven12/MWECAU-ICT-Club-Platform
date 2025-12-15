@@ -13,8 +13,9 @@ from accounts.email_service import EmailService
 logger = logging.getLogger(__name__)
 
 
+@method_decorator(cache_page(60 * 5), name='dispatch')  # Cache for 5 minutes
 class HomeView(TemplateView):
-    """Home page with optimized queries"""
+    """Home page with optimized queries and caching"""
     template_name = 'core/home.html'
     
     def get_context_data(self, **kwargs):
@@ -27,7 +28,7 @@ class HomeView(TemplateView):
         
         context['recent_events'] = Event.objects.select_related(
             'department'
-        ).prefetch_related('attendees').order_by('-date')[:3]
+        ).prefetch_related('attendees').order_by('-event_date')[:3]
         
         context['departments'] = Department.objects.select_related(
             'leader'
@@ -39,35 +40,36 @@ class HomeView(TemplateView):
         ).all()
         
         context['announcements'] = Announcement.objects.select_related(
-            'author', 'department'
+            'created_by', 'department'
         ).filter(published=True).order_by('-created_at')[:3]
-        
-        # Calculate department stats in one place
-        if context['departments']:
-            context['dept_stats'] = {
-                dept.id: dept.members.filter(is_approved=True).count()
-                for dept in context['departments']
-            }
         
         return context
 
 
+@method_decorator(cache_page(60 * 10), name='dispatch')  # Cache for 10 minutes
 class AboutView(TemplateView):
     """About ICT Club page"""
     template_name = 'core/about.html'
 
 
+@method_decorator(cache_page(60 * 10), name='dispatch')  # Cache for 10 minutes
 class FAQView(TemplateView):
     """FAQ page"""
     template_name = 'core/faq.html'
 
 
+@method_decorator(cache_page(60 * 5), name='dispatch')  # Cache for 5 minutes
 class DepartmentListView(ListView):
     """List all departments"""
     model = Department
     template_name = 'core/department_list.html'
     context_object_name = 'departments'
     paginate_by = 6
+    
+    def get_queryset(self):
+        return Department.objects.select_related('leader').prefetch_related(
+            Prefetch('members', queryset=CustomUser.objects.filter(is_approved=True))
+        )
 
 
 class DepartmentDetailView(DetailView):
@@ -98,12 +100,13 @@ class DepartmentDetailView(DetailView):
             featured=True
         )[:6]
         context['events'] = department.events.select_related('department').order_by(
-            '-date'
+            '-event_date'
         )[:5]
         
         return context
 
 
+@method_decorator(cache_page(60 * 5), name='dispatch')  # Cache for 5 minutes
 class ProjectListView(ListView):
     """List all projects with optimized queries"""
     model = Project
@@ -129,6 +132,7 @@ class ProjectListView(ListView):
         return context
 
 
+@method_decorator(cache_page(60 * 15), name='dispatch')  # Cache for 15 minutes
 class ProjectDetailView(DetailView):
     """Project detail page"""
     model = Project
@@ -137,6 +141,7 @@ class ProjectDetailView(DetailView):
     slug_field = 'slug'
 
 
+@method_decorator(cache_page(60 * 5), name='dispatch')  # Cache for 5 minutes
 class EventListView(ListView):
     """List all events"""
     model = Event
@@ -145,7 +150,7 @@ class EventListView(ListView):
     paginate_by = 12
     
     def get_queryset(self):
-        queryset = Event.objects.all()
+        queryset = Event.objects.select_related('department')
         department_slug = self.request.GET.get('department')
         if department_slug:
             queryset = queryset.filter(department__slug=department_slug)
@@ -157,6 +162,7 @@ class EventListView(ListView):
         return context
 
 
+@method_decorator(cache_page(60 * 5), name='dispatch')  # Cache for 5 minutes
 class AnnouncementListView(ListView):
     """List all announcements"""
     model = Announcement
@@ -165,7 +171,9 @@ class AnnouncementListView(ListView):
     paginate_by = 10
     
     def get_queryset(self):
-        return Announcement.objects.filter(published=True).order_by('-created_at')
+        return Announcement.objects.select_related('created_by', 'department').filter(
+            published=True
+        ).order_by('-created_at')
 
 
 class ContactFormView(CreateView):
@@ -192,6 +200,7 @@ class ContactFormView(CreateView):
         return response
 
 
+@method_decorator(cache_page(60 * 10), name='dispatch')  # Cache for 10 minutes
 class PrivacyPolicyView(TemplateView):
     """Privacy Policy page"""
     template_name = 'core/privacy_policy.html'

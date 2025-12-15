@@ -35,10 +35,10 @@ The MWECAU ICT Club Platform is a web-based Django application designed to manag
 ### High-Level Architecture
 
 ```
-User Interface (Django Templates)
-          |
-          v
-Django Application Layer
+    User Interface (Django Templates)
+              |
+              v
+    Django Application Layer
     |       |       |       |
     v       v       v       v
 Accounts  Core  Membership Config

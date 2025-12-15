@@ -8,7 +8,7 @@ We take the security of the MWECAU ICT Club Platform very seriously. If you disc
 
 Please DO NOT create a public GitHub issue for security vulnerabilities. Instead:
 
-1. **Email us directly** at: security@mwecau.ac.tz (or contact repository maintainers)
+1. **Email us directly** at: mwecauictclub@gmail.com(or contact repository maintainers)
 2. **Include details:**
    - Type of vulnerability
    - Location in the codebase (file path, line number if possible)

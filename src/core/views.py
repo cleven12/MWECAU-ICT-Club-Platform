@@ -5,8 +5,10 @@ from django.urls import reverse_lazy
 from django.db.models import Q, Count, Prefetch
 from django.views.decorators.cache import cache_page
 from django.utils.decorators import method_decorator
+from django.http import HttpResponseForbidden
 import logging
 from .models import Project, Event, Announcement, ContactMessage
+from .rate_limiting import RateLimiter
 from accounts.models import Department, CustomUser
 from accounts.email_service import EmailService
 
@@ -177,11 +179,21 @@ class AnnouncementListView(ListView):
 
 
 class ContactFormView(CreateView):
-    """Contact form page"""
+    """Contact form page with rate limiting to prevent spam"""
     model = ContactMessage
     template_name = 'core/contact.html'
     fields = ('name', 'email', 'phone', 'subject', 'message')
     success_url = reverse_lazy('core:home')
+    
+    def dispatch(self, request, *args, **kwargs):
+        """Check rate limit before processing request"""
+        # Allow 5 contact submissions per IP/user per hour
+        if RateLimiter.is_rate_limited(request, 'contact_form', max_attempts=5, window_seconds=3600):
+            logger.warning(f"Contact form spam attempt from {RateLimiter.get_client_identifier(request)}")
+            messages.error(request, 'Too many contact form submissions. Please try again later.')
+            return HttpResponseForbidden('Rate limit exceeded. Please try again later.')
+        
+        return super().dispatch(request, *args, **kwargs)
     
     def form_valid(self, form):
         response = super().form_valid(form)

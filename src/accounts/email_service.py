@@ -1,9 +1,10 @@
 """
 Email service module for ICT Club
 Provides robust email sending with error handling and logging
-Supports both single and bulk email operations
+Supports both single and bulk email operations with retry mechanism
 """
 import logging
+import time
 from typing import List, Dict, Tuple, Optional
 from django.core.mail import send_mail, send_mass_mail, EmailMessage
 from django.template.loader import render_to_string
@@ -12,6 +13,10 @@ from django.core.exceptions import ImproperlyConfigured
 from django.utils import timezone
 
 logger = logging.getLogger(__name__)
+
+# Email retry configuration
+MAX_RETRY_ATTEMPTS = 3
+RETRY_DELAY = 1  # seconds
 
 
 def get_staff_emails() -> List[str]:
@@ -39,7 +44,7 @@ def get_staff_emails() -> List[str]:
 class EmailService:
     """
     Service class for handling email operations with comprehensive error handling
-    Supports single emails, bulk emails, and HTML templates
+    Supports single emails, bulk emails, HTML templates, and automatic retry mechanism
     """
     
     DEFAULT_FROM_EMAIL = settings.DEFAULT_FROM_EMAIL or settings.EMAIL_HOST_USER
@@ -64,6 +69,59 @@ class EmailService:
         if not settings.EMAIL_HOST_PASSWORD:
             logger.warning("EMAIL_HOST_PASSWORD not configured - emails may fail")
         return True
+    
+    @classmethod
+    def _send_with_retry(
+        cls,
+        subject: str,
+        message: str,
+        recipient_email: str,
+        html_message: str = None,
+        fail_silently: bool = False
+    ) -> Tuple[bool, Optional[str]]:
+        """
+        Send email with automatic retry on failure
+        
+        Args:
+            subject: Email subject
+            message: Plain text message
+            recipient_email: Recipient email address
+            html_message: HTML message body
+            fail_silently: Whether to suppress exceptions
+            
+        Returns:
+            Tuple[bool, Optional[str]]: (success, error_message)
+        """
+        for attempt in range(MAX_RETRY_ATTEMPTS):
+            try:
+                sent = send_mail(
+                    subject=subject,
+                    message=message,
+                    from_email=cls.DEFAULT_FROM_EMAIL,
+                    recipient_list=[recipient_email],
+                    html_message=html_message,
+                    fail_silently=False,
+                )
+                
+                if sent:
+                    logger.info(f"Email sent to {recipient_email} (attempt {attempt + 1})")
+                    return True, None
+                    
+            except Exception as e:
+                error_msg = f"Email send failed to {recipient_email}: {str(e)}"
+                
+                if attempt < MAX_RETRY_ATTEMPTS - 1:
+                    logger.warning(f"{error_msg} - retrying in {RETRY_DELAY}s (attempt {attempt + 1}/{MAX_RETRY_ATTEMPTS})")
+                    time.sleep(RETRY_DELAY)
+                else:
+                    logger.error(f"{error_msg} - max retries exceeded")
+                    if not fail_silently:
+                        raise
+                    return False, error_msg
+        
+        error_msg = f"Failed to send email to {recipient_email} after {MAX_RETRY_ATTEMPTS} attempts"
+        logger.error(error_msg)
+        return False, error_msg
     
     @classmethod
     def send_single_email(
